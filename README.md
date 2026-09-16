@@ -4,9 +4,9 @@ This repository documents hands-on security operations work performed in a contr
 
 ## Current Status
 
-**Lab foundation complete — telemetry deployment in progress.**
+**Endpoint logging configured — Splunk ingestion pending.**
 
-The Active Directory environment and Windows endpoints are configured. The next phase covers Windows auditing, PowerShell logging, Sysmon deployment, and forwarding endpoint telemetry to Splunk.
+Advanced Audit Policy, PowerShell logging, and Sysmon have been deployed and validated across the domain controller and both Windows endpoints. All systems use UTC to support consistent event correlation. The next phase is forwarding endpoint telemetry to Splunk and validating centralized ingestion.
 
 ## Lab Environment
 
