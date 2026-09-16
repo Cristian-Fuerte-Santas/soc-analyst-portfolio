@@ -17,9 +17,30 @@ The Active Directory environment and Windows endpoints are configured. The next 
 | `CLIENT01`      | Windows 10 Finance workstation            | `192.168.51.20` |
 | `CLIENT02`      | Windows 10 IT Support workstation         | `192.168.51.30` |
 
-**Domain:** `blueteam.test`
-**Lab network:** `192.168.51.0/24`
-**Time standard:** UTC
+- **Domain:** `blueteam.test`
+- **Lab network:** `192.168.51.0/24`
+- **Time standard:** UTC
+
+## Active Directory Foundation
+
+The lab uses a small Windows domain to provide realistic users, endpoints, authentication activity, and centrally managed security policies.
+
+<details>
+<summary><strong>View Active Directory configuration evidence</strong></summary>
+
+### Domain Users
+
+The domain contains two fictional user accounts representing Finance and IT Support roles.
+
+![Active Directory users](images/01-active-directory-users.png)
+
+### Domain Workstations
+
+Both Windows 10 endpoints are joined to `blueteam.test` and placed in the `Workstations` organizational unit.
+
+![Active Directory workstations](images/02-active-directory-workstations.png)
+
+</details>
 
 ## Investigation Portfolio
 
@@ -62,6 +83,8 @@ Queries, commands, screenshots, results, and interpretations are documented toge
 soc-analyst-portfolio/
 ├── README.md
 ├── images/
+│   ├── 01-active-directory-users.png
+│   ├── 02-active-directory-workstations.png
 │   └── lab-architecture.png
 └── incidents/
     ├── INC-001-brute-force/
