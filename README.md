@@ -19,7 +19,7 @@ The Active Directory environment and Windows endpoints are configured. The next 
 
 - **Domain:** `blueteam.test`
 - **Lab network:** `192.168.51.0/24`
-- **Time standard:** UTC
+- **Time standard:** `UTC`
 
 ## Active Directory Foundation
 
