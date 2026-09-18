@@ -38,7 +38,7 @@ The environment separates protected Windows systems from a controlled attacker n
 - **INTERNAL network:** `192.168.51.0/24` (`VMnet1`)
 - **ATTACKER network:** `192.168.52.0/24` (`VMnet2`)
 - **Time standard:** `UTC`
-- **Splunk Web:** Windows 11 host, TCP `8000`
+- **Splunk Web:** Windows 11 host, `TCP 8000`
 - **pfSense syslog destination:** `192.168.51.1:5514/UDP`
 
 ## Active Directory Foundation
