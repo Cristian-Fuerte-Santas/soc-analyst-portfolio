@@ -2,11 +2,25 @@
 
 This repository documents hands-on security operations work performed in a controlled home lab. The project focuses on alert triage, evidence-based investigation, event correlation, incident scoping, severity assessment, response recommendations, and escalation decisions.
 
+## Contents
+
+- [Current Status](#current-status)
+- [Lab Architecture](#lab-architecture)
+- [Active Directory Foundation](#active-directory-foundation)
+- [Endpoint Logging and Centralized Ingestion](#endpoint-logging-and-centralized-ingestion)
+- [Network Security and Firewall Telemetry](#network-security-and-firewall-telemetry)
+- [Detection Engineering Validation](#detection-engineering-validation)
+- [Investigation Portfolio](#investigation-portfolio)
+- [Investigation Methodology](#investigation-methodology)
+- [Repository Structure](#repository-structure)
+- [Tools and Technologies](#tools-and-technologies)
+- [Security and Privacy](#security-and-privacy)
+
 ## Current Status
 
-**Core endpoint and network telemetry operational — detection engineering and incident execution are next.**
+**Core endpoint and network telemetry operational — the first portfolio investigation is complete.**
 
-The Active Directory environment, endpoint audit policies, PowerShell logging, Sysmon deployment, and centralized Windows ingestion in Splunk have been completed. The lab also includes an isolated attacker network protected by pfSense, centralized firewall logging in Splunk, search-time pfSense field extractions, and a validated scheduled detection for TCP port scanning.
+The Active Directory environment, endpoint audit policies, PowerShell logging, Sysmon deployment, and centralized Windows ingestion in Splunk have been completed. The lab also includes an isolated attacker network protected by pfSense, centralized firewall logging in Splunk, search-time pfSense field extractions, and a validated scheduled detection for TCP port scanning. `INC-001` documents an RDP password-guessing investigation from baseline creation through account lockout, successful authentication and post-authentication process analysis.
 
 | Component | Status |
 | --- | --- |
@@ -17,7 +31,8 @@ The Active Directory environment, endpoint audit policies, PowerShell logging, S
 | pfSense network segmentation | Complete |
 | pfSense ingestion and field extraction in Splunk | Complete |
 | `PF-001` port-scan detection | Validated |
-| Detection engineering and portfolio investigations | Next |
+| `INC-001` investigation | Complete |
+| Remaining portfolio investigations | Planned |
 
 ## Lab Architecture
 
@@ -46,6 +61,7 @@ The environment separates protected Windows systems from a controlled attacker n
 The lab uses a small Windows domain to provide realistic users, endpoints, authentication activity, and centrally managed security policies.
 
 <details>
+
 <summary><strong>View Active Directory configuration evidence</strong></summary>
 
 ### Domain Users
@@ -67,6 +83,7 @@ Both Windows 10 endpoints are joined to `blueteam.test` and placed in the `Works
 Advanced Audit Policy, PowerShell logging, and Sysmon provide complementary visibility across `DC01`, `CLIENT01`, and `CLIENT02`. Splunk receives and correlates telemetry from all three Windows systems using UTC timestamps.
 
 <details>
+
 <summary><strong>View endpoint telemetry evidence</strong></summary>
 
 ### Windows Process Creation — Event ID 4688
@@ -122,6 +139,7 @@ pfSense forwards firewall and system events to Splunk over UDP `5514`. Splunk st
 Search-time extractions provide fields including `interface`, `action`, `direction`, `protocol`, `src_ip`, `dest_ip`, `src_port`, `dest_port`, `icmp_type`, `tcp_flags`, `rule_number`, and `tracker`.
 
 <details>
+
 <summary><strong>View network telemetry evidence</strong></summary>
 
 ### pfSense Interfaces
@@ -155,25 +173,25 @@ The scheduled Splunk alert detected the controlled scan and created a medium-sev
 | `PF-001` — Possible Port Scan from ATTACKER Network | `pfsense:filterlog` | At least 10 distinct blocked TCP destination ports from one source within five minutes | Medium | Validated |
 
 This validation confirmed the complete telemetry path:
-
 ```text
 KALI01 → FW01 → Syslog UDP 5514 → Splunk → Field extraction → Scheduled alert
 ```
-
 The test produced 40 blocked connection events across 20 distinct destination ports. The duplicated attempts were expected because Nmap was configured with one retry per port.
 
 ## Investigation Portfolio
 
+One of the six planned investigations is complete. Selecting the case identifier opens the full incident report.
+
 | Case | Investigation | Status |
 | --- | --- | --- |
-| `INC-001` | Brute Force to Successful Authentication | Planned |
+| [`INC-001`](incidents/INC-001-brute-force/README.md) | RDP Password Guessing and Credential Compromise | Complete |
 | `INC-002` | Phishing Email Investigation | Planned |
 | `INC-003` | Suspicious PowerShell and Persistence | Planned |
 | `INC-004` | Suspicious Sign-in in Microsoft Sentinel | Planned |
 | `INC-005` | Endpoint Compromise | Planned |
 | `INC-006` | Network and C2 Investigation | Planned |
 
-Each investigation will include the evidence and reasoning required to support:
+Each investigation report includes the evidence and reasoning required to support:
 
 - A reconstructed timeline
 - A defined scope
@@ -198,34 +216,34 @@ Each case follows a consistent SOC workflow:
 Queries, commands, screenshots, results, and interpretations are documented together so that every conclusion can be traced back to supporting evidence.
 
 ## Repository Structure
-
 ```text
 soc-analyst-portfolio/
 ├── README.md
 ├── images/
-│   ├── 01-active-directory-users.png
-│   ├── 02-active-directory-workstations.png
-│   ├── 03-process-creation-4688.png
-│   ├── 04-powershell-module-4103.png
-│   ├── 05-powershell-script-block-4104.png
-│   ├── 06-sysmon-process-1.png
-│   ├── 07-splunk-client01-ingestion.png
-│   ├── 08-splunk-three-host-ingestion.png
-│   ├── 09-pfsense-interfaces.png
-│   ├── 10-kali-nmap-validation.png
-│   ├── 11-splunk-pfsense-fields.png
-│   ├── 12-pf001-triggered-alert.png
-│   └── lab-architecture.png
+│   ├── 01-active-directory-users.png
+│   ├── 02-active-directory-workstations.png
+│   ├── 03-process-creation-4688.png
+│   ├── 04-powershell-module-4103.png
+│   ├── 05-powershell-script-block-4104.png
+│   ├── 06-sysmon-process-1.png
+│   ├── 07-splunk-client01-ingestion.png
+│   ├── 08-splunk-three-host-ingestion.png
+│   ├── 09-pfsense-interfaces.png
+│   ├── 10-kali-nmap-validation.png
+│   ├── 11-splunk-pfsense-fields.png
+│   ├── 12-pf001-triggered-alert.png
+│   └── lab-architecture.png
 └── incidents/
-    ├── INC-001-brute-force/
-    ├── INC-002-phishing/
-    ├── INC-003-powershell/
-    ├── INC-004-suspicious-signin/
-    ├── INC-005-endpoint-compromise/
-    └── INC-006-network-c2/
+    ├── INC-001-brute-force/
+    │   ├── README.md
+    │   └── images/
+    ├── INC-002-phishing/
+    ├── INC-003-powershell/
+    ├── INC-004-suspicious-signin/
+    ├── INC-005-endpoint-compromise/
+    └── INC-006-network-c2/
 ```
-
-Each incident directory will contain its own report and supporting images.
+Each incident directory contains, or will contain as it is completed, its own report and supporting images.
 
 ## Tools and Technologies
 
