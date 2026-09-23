@@ -1,0 +1,1542 @@
+Received: from VI0P194MB2905.EURP194.PROD.OUTLOOK.COM (::1) by
+ VI0P194MB2841.EURP194.PROD.OUTLOOK.COM with HTTPS; Tue, 22 Sep 2026 17:23:55
+ +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=fpoJ9N6tjQXNUUEfH6ObphOlMGQaecU8DywhmuKWeWeqv92OzjpMC+lqoli873zaBwVnwon6bC7JxnHlt2ytsoUyBs+9MaOzTcoB6EXQsVIKaGW9xAo4gsKtyVYDbvYfq4Q1a+4h1VmzxT15gjSSRRuR296qAt2gib2N7/Gtxnwg3wqe7fhQnlAA2YlV2RTIjo/XRhAVTjRSTqxQLM4wdRz7ZKSc6spSgNmk1Z0h/KCyBDRc4oRbVWgppiQSUSaqsbKCrtQfID3Wuqrcb217PcfOElFPpUN73aI8uOncMp7uERv7j2s52UEUnXq5mUQEBHdr584+JqS3DtRoVho2OQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gkxtHoSI7QdZzgFHsiWIL/ZwLZcsd72CjHfMSL7GDEc=;
+ b=XZhJQBfR4NlfHNmLJwI2+7ZSBsXSrqawYbbM20AKuk7IvGqxjX08hr20rriOTQOj/k6M+y33q3WkeRtgi6+Sq97LPK4pzITdS0eXr+vGvT3WWuO20IbzC7YFl//ZHzFW6o4dzZN7AkD2O76sbwgAN8WLs7vDM0ReCNbkn66FDuU2nkT00cjSX2LsfUDqKlKeUGm1iSYt5agXmmsWNOKI4LeRwRGFel66Gi0XKc58yB/VqB3wXu2rKBKHavGYzocn5yfJTK8TkuZlSZAnTQRmCVfHG1IR7cu3LxeMXV46o4OD1EYP9xaQ9Kh9SjeZJk7cJPO7CT1/WdwvwhPlJDsEfQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender ip
+ is 40.107.44.29) smtp.rcpttodomain=hotmail.com
+ smtp.mailfrom=disdik.sinjaikab.go.id; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=disdik.sinjaikab.go.id; dkim=pass
+ (signature was verified) header.d=disdiksinjaikab.onmicrosoft.com; arc=pass
+ (0 oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=disdik.sinjaikab.go.id]
+ dkim=[1,1,header.d=disdik.sinjaikab.go.id]
+ dmarc=[1,1,header.from=disdik.sinjaikab.go.id])
+Received: from DS7PR03CA0211.namprd03.prod.outlook.com (2603:10b6:5:3ba::6) by
+ VI0P194MB2905.EURP194.PROD.OUTLOOK.COM (2603:10a6:800:317::24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.428.16; Tue, 22 Sep 2026 17:23:53 +0000
+Received: from BN2PEPF0000A7FE.namprd02.prod.outlook.com
+ (2603:10b6:5:3ba:cafe::1d) by DS7PR03CA0211.outlook.office365.com
+ (2603:10b6:5:3ba::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.428.16 via Frontend Transport; Tue,
+ 22 Sep 2026 17:23:53 +0000
+Authentication-Results: spf=softfail (sender IP is 40.107.44.29)
+ smtp.mailfrom=disdik.sinjaikab.go.id; dkim=pass (signature was verified)
+ header.d=disdiksinjaikab.onmicrosoft.com;dmarc=fail action=quarantine
+ header.from=disdik.sinjaikab.go.id;compauth=pass reason=130
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ disdik.sinjaikab.go.id discourages use of 40.107.44.29 as permitted sender)
+Received: from SEYPR02CU001.outbound.protection.outlook.com (40.107.44.29) by
+ BN2PEPF0000A7FE.mail.protection.outlook.com (10.167.245.165) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.451.8
+ via Frontend Transport; Tue, 22 Sep 2026 17:23:52 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:2ADABDC89233327C8C35226F3F3CCF520773D5B52AC0D37D8CBF80DB9FB9C6C4;UpperCasedChecksum:019519B9164F34FFA8EEFD1F5D4A0079A2FD57F4B5716BD94C89470EB06EAD82;SizeAsReceived:9513;Count:48
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OL1MvYGp78iGBSYdrsCk9utqwxjO+0AHm2JKNupVKImjpBI18A9SmxxdamQmDBDuoDR/L41LSMNo5RtjLCupsxiHdG9Jj8B6gp2iMoVDpaYewjx+RXIpb2rITdj7BvC8wx+6Ss7FMwS64zyjHKFrWpzmNKG9McaiDWBmQSyTl90ZZ0thcpYh+/WIwIwmbLj0qNbL8eTvODRMe37zBqy2qsS144X6CXo2oFGHTZMupWh5yWcjEQaj3CrZKVz0uo30BzIJqc0vwcnrO6MnVyzaPBQdrdKOcid4vJR1rmUk16dOi3TMr9rt/quGKj/rcyvCxyFgnyBk4NpBJoNovVS2CQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gkxtHoSI7QdZzgFHsiWIL/ZwLZcsd72CjHfMSL7GDEc=;
+ b=F3QoX3fDZCk2sQrGtQMzA7QJon/9705cl+3tmTToSAN0nqlikFxqA2A76hD5ikjkUckSkf2IrJ5C5uWTRJXHvy02xRiUm8EMWuAP8wR+HwOJkiKn5DjvaJr9ylOgZEPNYYXr8nHZGJ4rp59VGkidEJT5++3l4lBlrpCiC7y/0v/aNB4hcy9GMelXoCqg+Ocy8kQbtESHFqfV7PCfcic4GCvCzBhvfIAYfQ2yl1+MJh3VtHv/bG1FxUZkxPjadaaVqq3y8X1oGqDwHs0lgqWHaHFFxMK5U3JOBABrLOJBhdEUhAkiDfok9B17uGjNcHo2VikxaYALasueq6MrWcYEPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=disdik.sinjaikab.go.id; dmarc=pass action=none
+ header.from=disdik.sinjaikab.go.id; dkim=pass
+ header.d=disdik.sinjaikab.go.id; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=disdiksinjaikab.onmicrosoft.com;
+ s=selector1-disdiksinjaikab-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gkxtHoSI7QdZzgFHsiWIL/ZwLZcsd72CjHfMSL7GDEc=;
+ b=NaXJS2XI/gdNMtVoX15vPlfbPrjI2fPSRh8oOpL/06fk+b2ljt6flcfu1C8Y5/vlmL8OWZ8s3Cg2dMr8vDYr/cO1gHlNjLz8fGNgjlHFMwf6lxC7h54HZwf8c61Q3Mhb9JgBwd+majPoo3CQYEANJXTbgiX/plh2Dh1uAZ6WIXg=
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none
+ header.from=disdik.sinjaikab.go.id;
+Received: from TYZPR03MB6979.ap
+cprd03.prod.outlook.com (2603:1096:400:284::13)
+ by KU2PPF4EAC9DDBE.apcprd03.prod.outlook.com (2603:1096:d18::411) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.14; Tue, 22 Sep
+ 2026 17:23:49 +0000
+Received: from TYZPR03MB6979.apcprd03.prod.outlook.com
+ ([fe80::15aa:6bb0:c4d7:a24]) by TYZPR03MB6979.apcprd03.prod.outlook.com
+ ([fe80::15aa:6bb0:c4d7:a24%4]) with mapi id 15.21.0428.015; Tue, 22 Sep 2026
+ 17:23:49 +0000
+Date: Tue, 22 Sep 2026 17:23:44 +0000
+To: <cristian-clarinete@hotmail.com>
+CC: <cristian-clarinete@hotmail.com>
+From: Elena<lowi02dorrie_finlan_23dc77d4@disdik.sinjaikab.go.id>
+Subject: cristian-clarinete Unread video from Elena (expires in 5 mins)
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html; charset=UTF-8
+List-Unsubscribe: <https://z2.dlanaykk.co.uk/lists/gdkinsdb87aac/unsubscribe/pmpl21f5swzp/t7e6xfl4bxj?source=email-client-unsubscribe-button>, <mailto:info@dlanaykk.co.uk?subject=Campaign-Uid%3At7e6xfl4bxj%20%2F%20Subscriber-Uid%3Apmpl21f5swzp%20-%20Unsubscribe%20request&body=Please%20unsubscribe%20me%21>
+X-List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Id: gdkinsdb87aac <List management>
+X-Report-Abuse: https://z2.dlanaykk.co.uk/campaigns/t7e6xfl4bxj/report-abuse/gdkinsdb87aac/pmpl21f5swzp
+X-EBS: https://z2.dlanaykk.co.uk/lists/block-address
+Feedback-ID: t7e6xfl4bxj:pmpl21f5swzp:gdkinsdb87aac:awxvjbkkr5
+X-ClientProxiedBy: LO4P123CA0147.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:188::8) To TYZPR03MB6979.apcprd03.prod.outlook.com
+ (2603:1096:400:284::13)
+Return-Path: lowi02dorrie_finlan_23dc77d4@disdik.sinjaikab.go.id
+Message-ID: <TYZPR03MB697997080A4F60A218EA59D0FB832@TYZPR03MB6979.apcprd03.prod.outlook.com>
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6979:EE_|KU2PPF4EAC9DDBE:EE_|BN2PEPF0000A7FE:EE_|VI0P194MB2905:EE_|VI0P194MB2841:EE_
+X-MS-Office365-Filtering-Correlation-Id: cdd0dab9-6279-4ad8-2371-08df18ce465f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|69100299015|366016|3122999038|52116014|7049299003|3109299003|376014|7149299003|23010399003|786006|41320700013|1032899013|4022899009|1800799024|13003099007|38350700014|4133799003|6133799003|5113699003|4113699003|10067099003|56012099006|2066899003|8096899003|18002099003|21082099003;
+X-Microsoft-Antispam-Message-Info-Original: QehE+/P1mVlbnRFIqiZUtEVDFYx72q+fFOVbkoug6wl/CmK1WiW5aTRgGYmxcSpe1OL5emVYOq2o/q1DdH8J3vtHP+sIpAB711HJ+1A2OwLgSFn1a8afitxHklXhs6l7TicS2FJLkNTlSLI5LxnQTsI8bI8dubeCx+qSD07nK1YdYD1SCXKiQEt9K3XzH8xOcYc+hMV47crp416jSX0YQHC0FnK9JuUnOGF7tUTqgDKA+OsulJpSse7qRuTslnFc0KL2OI6IUiYjoInx8WCPDC4hbZr8E5lXYc6GMVqY5hzw8FiAjaHObQWXIhgv//rZRgme6qKdzD60Gq6ex8unC16U+s3EMMlCjMxiedt4rxoiCEEy1lv6sG4qekJ4VPILml0XO6Eyw/CDl1R1nTUgtTERS6z5lfgTo8mWqS+0MFhcUJnMF/RAywxwZn0cZ2625+NNTTT67sPoj2XlBO8WSWBWISTgPux4trENOII0ixdJtHzQCCiGUUmmaWkXP4i6dj2m/fB4O8EGEoJaD8TIzIa8jrXeNXekGt/wkAFUsoveIhPo4PKxsV1COnXtYCiJMGn/DmOoQ546sYM69fcjNdy4XSGgyms0Jp42WjoeTTzdG6zjWgK1fXCUKI+jkmWMZriYL/urZ9UeNs45vxetlYFwlOTK6ot1vfwIuK6+h4w=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:fr;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6979.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(69100299015)(366016)(3122999038)(52116014)(7049299003)(3109299003)(376014)(7149299003)(23010399003)(786006)(41320700013)(1032899013)(4022899009)(1800799024)(13003099007)(38350700014)(4133799003)(6133799003)(5113699003)(4113699003)(10067099003)(56012099006)(2066899003)(8096899003)(18002099003)(21082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-Original-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-Original-0: =?utf-8?B?Z2R0YjRaZGo5MUlEbU1kQUs3bVRqMUJybTVyaTIyRHI4Y1NPMWFoZnBMMUYz?=
+ =?utf-8?B?cHd0WllXRXhQdktxaEd4OHUyNWtCajJacGMwaG96NHI4c2t2dU5aS0U3M3pG?=
+ =?utf-8?B?K0svalVhQzZlc3d4YWFjYWtJekJSUm9kY0E0TGcyRVhsSVJ2ZkRZL3A3a0Ur?=
+ =?utf-8?B?ZVlSSitlNmYvWEEzR1ZRTjNFWDBLVVJ0NmVyWnplMldkcThkQlo0NGtweWdM?=
+ =?utf-8?B?bU9ScXNKTGduRlFlUlg4aXBEQ1lZNGJwK3prWXpxR2RRMlpPRGNBWmpnaFJT?=
+ =?utf-8?B?aTNnalQ5c2V0cm1CYTFoNStFNWFkMzdFQVpFQjNxczdzUGJneGFUOGtHYTY3?=
+ =?utf-8?B?L1FaT0FEajA0cGlrdVVleEI3UlpqKytIVUJ1UktmYjk0RkNZK3czQytQZEhk?=
+ =?utf-8?B?VlJZa0hDRjVMQUNMZFkrS1hDRzkzTG90ME5TcVJiK0pHRGJZQUpWeEFOSXRJ?=
+ =?utf-8?B?VEVWVE8rUHd1TWdkOUFWUFpYNXUwTXpIZ3BwTy9QdTh0clFZUHFFazR2ejF6?=
+ =?utf-8?B?K0VNdXpZWno4dk1ublpFT0NQcWU2WEtUalowb2lJcUxPQ0h3V2lvYW85aUlJ?=
+ =?utf-8?B?R3NiNm1kL05nYXlxclZBWVJKUmxYVEEybEl5M3ArL01XVmk3RmczY1ZkSXo2?=
+ =?utf-8?B?KzhmdFBhVDY2elZVRzVVZzZpZTBYeWxDVDRUQlY4b2VETWxieHVudWs3T2RB?=
+ =?utf-8?B?YnZ2cCtKa2VhdGprZHR1bzV3MlJ3WFlSU2xuU1lpelFWTFgxeEg4L205VUlK?=
+ =?utf-8?B?bTZSTk5ZdFlleFMvSElMdCs0cERPd09hWE42azJQYWZRTWo4Qy9TWDdId3Zi?=
+ =?utf-8?B?UE1GdHVEZWdOS1hZeXNMTkZYeDgya2M4MXExNlRPOEVJWWRFK2hVbml6NXJB?=
+ =?utf-8?B?YkVObDFqSDZyWmR6STBxRDBSbmQ5VFY5MDczaDZiZzN3dDVzOTBDWEl1SlpD?=
+ =?utf-8?B?V1haY3Nuanh4YkJzWEJBTnBFc3hnL3Uzd0tXbnJPM21ubm55dzl4UC9UZDhT?=
+ =?utf-8?B?eU16VE05U2d3TzBNNUVudFM1UTBoRS9uNmFHNSswcER6T1FnSE5YaVpLem5C?=
+ =?utf-8?B?cFdCWXRQVjhOZ015N2F6TmdGSE9FNjllVjQ2dk1GSUZLZUpVZG5CZVJ2OHlz?=
+ =?utf-8?B?TGpkbzd6ME1STGlVSm15ZEl6MHg1ZDhlNktmWU5BVERFS0tkTjhhbXYxWTgw?=
+ =?utf-8?B?RktrODhXbitFbkdXLy95UDFCRzNBUllIcXlzZGNzaFlIMTA3ZndHT3k4NXZw?=
+ =?utf-8?B?algzNFdXTkpPMmQzcURJRlg0by9qNUNLbHZaQW5aSFVvbXhNcmI1MlpGamVr?=
+ =?utf-8?B?eHhMdWMwblhpeEZtM2kyYVpkc1g2Y2sveko5WDd6VFFYaTJZQnczc1FQRTNr?=
+ =?utf-8?B?RG1tdkd1TXJ1YzM1dEc4d0FLcnYrak5tdmJwdDRTQW1GUThOZ1QyaU5VM0Rt?=
+ =?utf-8?B?d01MWGlsdFc4dzVWV2NKd2x1d0JzaWtuWWJlWkdPNHN0dWkwN1RudXJHYmFi?=
+ =?utf-8?B?RU1xYUlCeFpCWmovZFhJYW1vY2pIN3EwN2hYVmlJY3BQa1diNWJ5bG96VW1q?=
+ =?utf-8?B?WDVZUDM0RW5oSEdXdEFnKzcwTGVLN2ZaSTQ1aTV6R0EzQlVpK3FMTEdOa0sr?=
+ =?utf-8?B?NGp1U3RPVnk3TjJDK2g4a1JaVXRUZCtnbnBBL2FId0VGT1MxdDA0d1VWWlpn?=
+ =?utf-8?B?a2VvamVMcXAvVEJPd3JHTVZNWkpkVmlXdmZjSDAxdVB2QlBoREJIT1Q2SDVp?=
+ =?utf-8?B?c3ZJOW5XeXlsU2R4NUJqYUVsckNWVkM2QjRXU1NQb1FMU3F1NVY0NFlMN3o4?=
+ =?utf-8?B?djhTU2hFVVcvcXl1S2RVTmRvMHZ0OWpFeTBJNVBqZDlWR3pRc2NoeXIvUEhV?=
+ =?utf-8?B?RW9OVU9IVEJXdVRhU2loQklrdnZjYUFHVTQreWtDZTEwTExNeHFZMERCRW41?=
+ =?utf-8?B?Zm1PNndUS3A5UGtRVW95Nk4zaEtHTmptajRqVHBISXNIakp3R2Z3c01ob2t2?=
+ =?utf-8?B?bjNlUnE0WjBLNWZBckVSejYzNnFndTFWbTI5Lzh0aFJ5YXl2bFhLdUlkNThq?=
+ =?utf-8?B?a1ZmcktkTUVRZUU3ck5rMEpoRGtKbS9oLzRUZWtCRGhFOGNNWWdlUU9BdVVT?=
+ =?utf-8?B?ckFUcXZsN2JkYUhjeG1aTzJoMm1hdWdzN0RyTU5iUUYzODVCeDJzdEVveFpH?=
+ =?utf-8?B?aWNLK0V5N25XRXBiaU1kSGJLYkVGakVNOUNmV3pTZVFQUS94MHNCZ01sUjFP?=
+ =?utf-8?B?dTNoTlJrMU1rS2NwbkthMlFiYXhNN3B4VTBCWEZuWVBuTGVtM1BlS1UzUW9p?=
+ =?utf-8?B?NFF3dC9IU0FEOWNJVXBGTHFKSmgzRXhOZERhZkRVcnNnTFZla1pSSUZZMzE4?=
+ =?utf-8?Q?SMfMDBWELGRPUdPs08GQb5rXtgorm0FjG3XYP0i9vDpRd?=
+X-MS-Exchange-AntiSpam-MessageData-Original-1: e0W4qSdnfugeM7/uCTjeSPJKsVqcmHrMliY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KU2PPF4EAC9DDBE
+X-IncomingHeaderCount: 48
+X-MS-Exchange-Organization-ExpirationStartTime: 22 Sep 2026 17:23:53.2869
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: cdd0dab9-6279-4ad8-2371-08df18ce465f
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: BN2PEPF0000A7FE.namprd02.prod.outlook.com
+X-MS-Exchange-Transport-CrossTenantHeadersPromoted: BN2PEPF0000A7FE.namprd02.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Exchange-Organization-AuthSource: BN2PEPF0000A7FE.namprd02.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-UserLastLogonTime: 9/22/2026 4:30:09 PM
+X-MS-Office365-Filtering-Correlation-Id-Prvs: ece88f41-0322-4612-d511-08df18ce43c7
+X-Sender-IP: 40.107.44.29
+X-MS-Exchange-EOPDirect: true
+X-SID-PRA: LOWI02DORRIE_FINLAN_23DC77D4@DISDIK.SINJAIKAB.GO.ID
+X-SID-Result: FAIL
+X-MS-Exchange-Organization-SCL: 5
+X-Microsoft-Antispam: BCL:0;ARA:1444111002|67000799015|11001999021|6100799021|6401999021|5301999021|19000799018|8301999021|57400799018|1680799066|34130799006|3151999006|17010799003|10300799038|9400799043|50300799015|11020799012|970799063|9000799056|5099299006|32020799003|5149299006|60050799012|260826003000599003|5139299004|7402599021|260820164000599003|28130799009|16130799003;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2026 17:23:52.8143
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cdd0dab9-6279-4ad8-2371-08df18ce465f
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF0000A7FE.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0P194MB2905
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:02.3359862
+X-MS-Exchange-Processed-By-BccFoldering: 15.21.0428.008
+X-Message-Flag: Follow up
+Importance: high
+X-Priority: 1
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;ex:0;psp:0;auth:0;dest:J;OFR:SpamFilterAuthJ;ENG:(5062000311)(920221119095)(90000117)(920221120095)(90005022)(91005020)(91035115)(9050020)(9100341)(944500132)(2008001181)(2008121020)(4810010)(4910033)(10005027)(9610028)(9540006)(10103005)(9320005)(9215007)(120001);RF:JunkEmail;
+X-Message-Delivery: Vj0xLjE7dXM9MDtsPTA7YT0wO0Q9MjtHRD0xO1NDTD02
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?QUlGVDh3M3JBNDFad2JDaUhSSGhyeW1sTGxWT1FkZ2JoUmovZWQ0aUxPQmtS?=
+ =?utf-8?B?OE5HU3Z1RzFHbm5LeXRVTzg3VVd0ejFUWFZ6M3VJTFYrajlLUVdlT2ptd0Ju?=
+ =?utf-8?B?NHl4YklQWk9VZSt0U1VsRGNKT29GSDErT2Jrb0lob05wK3NLbG9kSGRhR0hR?=
+ =?utf-8?B?UkVHL0RCMUprZlR4SFB3RnRTREgzaFhoTFBmVHZTOFFFci9hb3ZoVFBrbjNX?=
+ =?utf-8?B?cEI4QTdQWkMyQ0Y5N003RVJuUjZyUzNmRGRESVliS2JzSk5JNE1SSk42SmVz?=
+ =?utf-8?B?NGVPbjJrNld2K1VmL0dRakFMOEU5a0FTZnhOMU5lQmpvcENVcVFkTTY3aFZn?=
+ =?utf-8?B?UytTNFduYUx2a0xaTytDbExYWklhaFgzaGlHUXZ6WFY1NHU3M0Zrcncxb1pO?=
+ =?utf-8?B?aTR1bWtzZ3k5aVVOUHlrWU8vU1Z5T014RTJtVHE4bkFwb1k4aWlma2wxaXA4?=
+ =?utf-8?B?TG96aGFQSHhvN256V2poRnM0UENlN2xUSUNFZUpxWlY2QUQxYnZURDZjYk44?=
+ =?utf-8?B?ektwTE1hdjcxZUVBV2RqRC9ENUxWQll6dnBRVjAvTHRGOFlYQWVnN2NicDFm?=
+ =?utf-8?B?WXpjYTBMSlhSRC9PWlF2RUFJWjFlZmF1d1ZXRVJXNWI2VE9NaUFYOFN5c0NS?=
+ =?utf-8?B?cFRyL0EvNDBiYWlqcnArKzBJZkVON00xMm9CRStBYzlOU2ZQUHBrd2doM25i?=
+ =?utf-8?B?SFRZbk5zY3VXSW13VEdhY3lzcGI4ZmNKNDBRT2Ftc0hRT0htbk93dEYzcUdw?=
+ =?utf-8?B?N3JmbGFpRGxQaHNBN1hjNUVyaEkwZzRqU3ZzZHd4bnR1cW81L1Rtblg2ZExY?=
+ =?utf-8?B?bExVa0Jtbm52U0IyQkNocGFGYUVBdmpTbmNoSDdPKzYxTlRJY1lkeVlGUWJ3?=
+ =?utf-8?B?bW8xa05SVmt2ZzJCV0FSSkhhYy9mUlh3WmRzUE1rT2NaY2x0cDlJRzJqUVJw?=
+ =?utf-8?B?UGRPTnRZN3FOYU50eXJRMmRSUEJyT0xxYmE5c2lHUEFiQlM2ajNmVm9oTFEv?=
+ =?utf-8?B?cnhHS1M2bWVSRzdpMmVHWFdZemZZUGUvanoyWitmbmtCMitpa0p4UzhYUjBV?=
+ =?utf-8?B?alpqcEtreGE2dEltN1hJS2poeWRxV0tBN3pTMG1qMDY5MGJ5MVRBTXNSWWJs?=
+ =?utf-8?B?aVJqa282WkRZczY1NkN5eVBpa2JETks5OC9jZnhnWExOMy9BREJIN2xrb3pX?=
+ =?utf-8?B?R1U3c3B2MXdRTFN2eWJubVQ5OS9pVDVIMkVWc0Y0THBRcldINUtQL245bnZo?=
+ =?utf-8?B?VlZGZGRUUmJKSEhac1MrNUJHK0tIOGdRQnZKQkVFbVhIeDB4bmdMWTJweGRJ?=
+ =?utf-8?B?aVRoby9pZ0lkNDdSNThJZUlxL1hWUmxQTHUyWG8xU1BiWUVEUDdHKzVsU2dD?=
+ =?utf-8?B?VlMycHJQWmFRMDhmcTMzUDd2bEZlN0ZMa1FxbkQ1eGwyZHJqcnJ6dThLRGhS?=
+ =?utf-8?B?bXF0aUYwaVI2SEJOZlhnZm1NeGQrUWZmRHRMUHhxZHRXbGZDbEFPZ1l2c3VL?=
+ =?utf-8?B?eEM2cDRzaTZsY0R6cndSSEsxc1lpUWhoYmdxbFIyREpxNmh4ZTRCMTBzL1I2?=
+ =?utf-8?B?dXJjSmhha2FsN3Npdmh2RDZpc2pYS3RNQTdOWnBPWTNDSVdxeXpMMi84UmFC?=
+ =?utf-8?B?OVJiYStpMVg3VWgrcjRVd0VLN3ZacUh6UjIzd2tEc0R3eVE5Vi9CWGdvVStV?=
+ =?utf-8?B?T3plQVYvRXQxUnBaN2ZwRksyWk9WM0l3TmJvTWZUbEVhd1p3bkVGME9tZVJq?=
+ =?utf-8?B?LzR5dFViSzJ4VG85Mzlna01PUDBwdXAycHUxandJM0UvVkRCWjNicG9sQ0JL?=
+ =?utf-8?B?SmkwbklwUDdNeDAyTzFqL3ZwTXNOS0dYdDMvZ0EzcDZOYVlsNzFTbFZYNWQz?=
+ =?utf-8?B?ZFZhTVExa2hoK2ZRby9jSmVWTGx1UXJ5L3ZSZmdINWpFS2dFc05UOUpMVG4w?=
+ =?utf-8?B?VCtSbkEzdlFEWStoa1U1REhIRk5XTytsSktkNW5ZakxQU3Z0SnhmRzAvVTA2?=
+ =?utf-8?B?MExWMnV0MXN3OWdHWGYySFRyZlhMa1E4NThVcW1xQ015SDBlWSs2NHFMTlVB?=
+ =?utf-8?B?aGVPT2hRUzhnZjAxNkZFUm5XWEo4ZFl1RGdhOFJVR00yMkVxb04wV0hYOFc2?=
+ =?utf-8?B?ZXJqTkRsaUpZVXNzVXhJUExLZndFaldzaThGYUUrWFc2RFM0ZUp2SHlHYUZ4?=
+ =?utf-8?B?MXltNzhrbEFlNzBkN0JhKzl0aFd0SzdXMjR3ZzdieEZiM3FSMTdCK1ljZEg0?=
+ =?utf-8?B?TVczSzZmK1pxdEFubmdVaVRzdkNySkhkNU9qWXNwWjAyek8xcWwxaWJFZ3Jm?=
+ =?utf-8?B?UUpuVXh3cTZpMHRXWjFiU3ZVMlJ5TXZmMDFpeHE4TDdHNWtVdWdvY2syYzVh?=
+ =?utf-8?B?QjZSSEdJR0Y1eDVmT2ZXQWtWZnhOUVM2aGpoTlhKYWJ6TlhpOWZxNmxSK29y?=
+ =?utf-8?B?cnZyME1vaEIvZjZhT3MrWWRPc09sSzNIQzFsS1NwT0ZQRHd5eFBNWjBMQTAw?=
+ =?utf-8?B?NmtVb2xqekovMURVTkhaS2VJcGJ1NFkvNG5TQXNhaFdUa0xzUHpEc1dCSFlv?=
+ =?utf-8?B?NVlYK1MvSEU0V0REaHl3YVBJVVlFdklJc0c4QWVuU0JmY2QwRUpLUnRKenI0?=
+ =?utf-8?B?SnhiUFNIc3RYRDdGa0s0N211SVAzQSsyZ3hkeWtRWFJISG9XV1B5eEluQnpP?=
+ =?utf-8?B?U0VpdlkxY0swY0JlOWw1b0IxaVNKUGpubGlyUDRIRXJxS3JlT0JNSEVCV1F6?=
+ =?utf-8?B?Z2lZekJBVHZvTWpmLzM3Rlh6RzZrYlFVWFFUUGNBUlpQOHQ3QmtmbTJBZ3pK?=
+ =?utf-8?B?b3h3dlh4djZXckJnMTlPV0lYY1E0SFpHZDA4ZG91NTZXVDVhWUtLb3Jzallz?=
+ =?utf-8?B?MEZiaFJCTk02RzE1MkV0QUZOM2ltbEtlODZ2QmRKU1RYMHNpV1BwSTZLTGhO?=
+ =?utf-8?B?MENoc21EY2JKL211M0UrTkRmSUEvZkh5S3huNm15YUJNaG5SQjY2aUdLckFt?=
+ =?utf-8?B?amlTbUZFRzd2cGhZN0lFVEF1ZUo1amp6UXplbzhFUm5sSjh6Vm80cWNDU040?=
+ =?utf-8?B?OXAvTy9yM1htK2VmS3dnUXZaeDhJVVR5SzF1MlczaGRkWWxhVGYwRml4RzZG?=
+ =?utf-8?B?TlJtVHNjUlpiN3g3cVZIQi9qRXRUM1BSU2FRakNveGNmams1cVpUaGZvVHlr?=
+ =?utf-8?B?S0xKdU9WcW5UNm5uSmxPK0pxNGFPVDBIRUhPRDI2amUzRk9pU1NJUnRrWDQr?=
+ =?utf-8?B?Tkk5cDRPUWlzUVc4MitWdjZyL1dITDE4L3JTNkhMdGlDSnM1OS8yTHNYYitk?=
+ =?utf-8?B?NUdCS1RBZm45cVR0WDdLbjhPalRzVFZ0TXhrQ2hvQ0J5NXV6a2dTM3YxcEI4?=
+ =?utf-8?B?cEx5SDdEVmMxbFVMN3Q2L1hjMFl1dkVYNzcyU0NQWHBtdkxqVlNRMWFBOXZO?=
+ =?utf-8?B?b3VlT0lhb082ZVRWSStzdVZkMTRlazU2QkpCNmMzTHJUTnAyQU9xSGJGWVhh?=
+ =?utf-8?B?V1lNdGZuNEFMUlNnRWRabk9DZDQyaGRxeDE1QWJzTzd3YnRBWjlpUTdFQ3hh?=
+ =?utf-8?B?RjdjTU1tWVZYd2RRcUpramY5ZDBJaCs0Zlp5WFBmV0VuMVNlYlVJN2d1MzZk?=
+ =?utf-8?Q?Ac2s/t5fa+xA=3D?=
+MIME-Version: 1.0
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><div dir="ltrdata-setdIR=false" style="height:2px;max-height:2px;overflow-y:hidden ;color:#ffe"><body> <table cellpadding="0" border="0" cellspacing="0" style=" mso-hide: all; display: none;"><tr><td>Identify high-value R&amp;D prospects, track funding stages, and access real-time data on 14,000 private companies.͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;͏‌&nbsp;</td></tr></table> <!--[if mso]> <img width="1" height="1" src="https://r.notification.biopharmcatalyst.com/mk/op/sh/7nVTPddU8lzHnqb05ogAPTSk7aPFz3l/LyHSzdfTS-DL" /> <![endif]-->
+	<!--[if !mso]> <!----> <img style="display:none" src="https://r.notification.biopharmcatalyst.com/mk/op/sh/7nVTPddU8lzHnqb05ogAPTSk7aPFz3l/LyHSzdfTS-DL"> <!-- <![endif]--> <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="format-detection" content="telephone=no"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>&gt;&gt;Subject Line</title><style type="text/css" emogrify="no">
+			#outlook a {
+				padding: 0;
+			}
+			
+			.ExternalClass {
+				width: 100%;
+			}
+			
+			.ExternalClass,
+			.ExternalClass p,
+			.ExternalClass span,
+			.ExternalClass font,
+			.ExternalClass td,
+			.ExternalClass div {
+				line-height: 100%;
+			}
+			
+			table td {
+				border-collapse: collapse; mso-line-height-rule: exactly;
+			}
+			
+			.editable.image {
+				font-size: 0 !important; line-height: 0 !important;
+			}
+			
+			.nl2go_preheader {
+				display: none !important; mso-hide: all !important; mso-line-height-rule: exactly; visibility: hidden !important; line-height: 0px !important; font-size: 0px !important;
+			}
+			
+			body {
+				width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0;
+			}
+			
+			img {
+				outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;
+			}
+			
+			a img {
+				border: none;
+			}
+			
+			table {
+				border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;
+			}
+			
+			th {
+				font-weight: normal; text-align: left;
+			}
+			
+			*[class="gmail-fix"] {
+				display: none !important;
+			}
+
+		</style><style type="text/css" emogrify="no">
+			@media (max-width: 600px) {
+				.gmx-killpill {
+					content: ' \03D1';
+				}
+			}
+
+		</style><style type="text/css" emogrify="no">
+			@media (max-width: 600px) {
+				.gmx-killpill {
+					content: ' \03D1';
+				}
+				.r0-o {
+					background-size: cover !important; border-style: solid !important; margin: 0 auto 0 auto !important; width: 100% !important
+				}
+				.r1-i {
+					background-color: #eff2f7 !important
+				}
+				.r2-c {
+					box-sizing: border-box !important; text-align: center !important; valign: middle !important; width: 320px !important
+				}
+				.r3-o {
+					border-style: solid !important; margin: 0 auto 0 auto !important; width: 320px !important
+				}
+				.r4-i {
+					color: #3b3f44 !important; padding-bottom: 6px !important; padding-left: 15px !important; padding-right: 15px !important; padding-top: 0px !important
+				}
+				.r5-c {
+					box-sizing: border-box !important; display: block !important; valign: middle !important; width: 100% !important
+				}
+				.r6-o {
+					border-style: solid !important; width: 100% !important
+				}
+				.r7-i {
+					color: #3b3f44 !important; padding-left: 0px !important; padding-right: 0px !important
+				}
+				.r8-c {
+					box-sizing: border-box !important; text-align: left !important; valign: top !important; width: 100% !important
+				}
+				.r9-o {
+					border-style: solid !important; margin: 0 auto 0 0 !important; width: 100% !important
+				}
+				.r10-i {
+					color: #3b3f44 !important; padding-bottom: 0px !important; padding-left: 0px !important; padding-right: 0px !important; padding-top: 5px !important; text-align: center !important
+				}
+				.r11-c {
+					box-sizing: border-box !important; text-align: center !important; valign: top !important; width: 100% !important
+				}
+				.r12-o {
+					border-style: solid !important; margin: 0 auto 0 auto !important; width: 100% !important
+				}
+				.r13-i {
+					background-color: #ffffff !important; color: #3b3f44 !important; padding-bottom: 20px !important; padding-left: 15px !important; padding-right: 15px !important; padding-top: 20px !important
+				}
+				.r14-c {
+					box-sizing: border-box !important; display: block !important; valign: top !important; width: 100% !important
+				}
+				.r15-c {
+					box-sizing: border-box !important; color: #3b3f44 !important; padding-bottom: 0px !important; padding-left: 0px !important; padding-right: 0px !important; padding-top: 0px !important; text-align: center !important; valign: top !important; width: 100% !important
+				}
+				.r16-i {
+					background-color: #ffffff !important; color: #3b3f44 !important; padding-bottom: 0px !important; padding-left: 15px !important; padding-right: 15px !important; padding-top: 0px !important
+				}
+				.r17-c {
+					box-sizing: border-box !important; color: #3b3f44 !important; padding-bottom: 5px !important; padding-top: 5px !important; text-align: center !important; valign: top !important; width: 100% !important
+				}
+				.r18-i {
+					background-color: #ffffff !important; padding-bottom: 0px !important; padding-left: 15px !important; padding-right: 15px !important; padding-top: 0px !important
+				}
+				.r19-i {
+					padding-left: 0px !important; padding-right: 0px !important
+				}
+				.r20-c {
+					box-sizing: border-box !important; padding-bottom: 0px !important; padding-left: 0px !important; padding-right: 0px !important; padding-top: 0px !important; text-align: center !important; width: 100% !important
+				}
+				.r21-i {
+					padding-bottom: 7px !important; padding-top: 15px !important; text-align: center !important
+				}
+				.r22-c {
+					box-sizing: border-box !important; padding-bottom: 15px !important; padding-top: 15px !important; text-align: center !important; valign: top !important; width: 100% !important
+				}
+				.r23-c {
+					box-sizing: border-box !important; padding-bottom: 15px !important; padding-top: 0px !important; text-align: left !important; valign: top !important; width: 100% !important
+				}
+				.r24-c {
+					box-sizing: border-box !important; color: #3b3f44 !important; padding-bottom: 15px !important; padding-top: 15px !important; text-align: center !important; valign: top !important; width: 100% !important
+				}
+				.r25-i {
+					background-color: #eff2f7 !important; color: #3b3f44 !important; padding-bottom: 20px !important; padding-left: 15px !important; padding-right: 15px !important; padding-top: 20px !important
+				}
+				.r26-c {
+					box-sizing: border-box !important; text-align: center !important; width: 100% !important
+				}
+				.r27-i {
+					color: #3b3f44 !important; font-size: 0px !important; padding-bottom: 10px !important; padding-left: 65px !important; padding-right: 65px !important; padding-top: 10px !important
+				}
+				.r28-c {
+					box-sizing: border-box !important; width: 32px !important
+				}
+				.r29-o {
+					border-style: solid !important; margin-right: 8px !important; width: 32px !important
+				}
+				.r30-i {
+					color: #3b3f44 !important; padding-bottom: 5px !important; padding-top: 5px !important
+				}
+				.r31-o {
+					border-style: solid !important; margin-right: 0px !important; width: 32px !important
+				}
+				.r32-i {
+					color: #3b3f44 !important; padding-bottom: 0px !important; padding-top: 0px !important; text-align: center !important
+				}
+				.r33-c {
+					box-sizing: border-box !important; color: #3b3f44 !important; padding-bottom: 11px !important; padding-left: 10px !important; padding-right: 10px !important; padding-top: 10px !important; text-align: center !important; width: 100% !important
+				}
+				.r34-i {
+					color: #3b3f44 !important; padding-bottom: 0px !important; padding-left: 0px !important; padding-right: 0px !important; padding-top: 0px !important; text-align: center !important
+				}
+				.r35-i {
+					color: #3b3f44 !important; padding-bottom: 15px !important; padding-top: 15px !important; text-align: center !important
+				}
+				body {
+					-webkit-text-size-adjust: none
+				}
+				.nl2go-responsive-hide {
+					display: none
+				}
+				.nl2go-body-table {
+					min-width: unset !important
+				}
+				.mobshow {
+					height: auto !important; overflow: visible !important; max-height: unset !important; visibility: visible !important
+				}
+				.resp-table {
+					display: inline-table !important
+				}
+				.magic-resp {
+					display: table-cell !important
+				}
+			}
+
+		</style><!--[if !mso]><!--><style type="text/css" emogrify="no">
+			@import url("https://fonts.googleapis.com/css2?family=IBM Plex Serif&family=Open Sans"); @import url("https://fonts.googleapis.com/css2?family=Arimo&family=Roboto");
+
+		</style><!--<![endif]--><style type="text/css">
+			p,
+			h1,
+			h2,
+			h3,
+			h4,
+			ol,
+			ul,
+			li {
+				margin: 0;
+			}
+			
+			a,
+			a:link {
+				color: #0072ca; text-decoration: underline
+			}
+			
+			.nl2go-default-textstyle {
+				color: #3b3f44; font-family: arial, helvetica, sans-serif; font-size: 18px; line-height: 1.5; word-break: break-word
+			}
+			
+			.default-button {
+				color: #ffffff; font-family: Arimo; font-size: 16px; font-style: normal; font-weight: bold; line-height: 1.15; text-decoration: none; word-break: break-word
+			}
+			
+			.default-heading2 {
+				color: #1F2D3D; font-family: arial, helvetica, sans-serif; font-size: 32px; word-break: break-word
+			}
+			
+			.sib_class_headline2 {
+				color: #333333; font-family: arial, helvetica, sans-serif; font-size: 24px; word-break: break-word
+			}
+			
+			.default-heading3 {
+				color: #1F2D3D; font-family: arial, helvetica, sans-serif; font-size: 24px; word-break: break-word
+			}
+			
+			.sib_class_headline1 {
+				color: #333333; font-family: arial, helvetica, sans-serif; font-size: 32px; font-weight: bold; word-break: break-word
+			}
+			
+			.default-heading4 {
+				color: #1F2D3D; font-family: arial, helvetica, sans-serif; font-size: 18px; word-break: break-word
+			}
+			
+			.sib_class_impressum {
+				color: #999999; font-family: arial, helvetica, sans-serif; font-size: 12px; font-style: italic; word-break: break-word
+			}
+			
+			.default-heading1 {
+				color: #1F2D3D; font-family: arial, helvetica, sans-serif; font-size: 36px; word-break: break-word
+			}
+			
+			.sib_class_headline3 {
+				color: #333333; font-family: arial, helvetica, sans-serif; font-size: 20px; word-break: break-word
+			}
+			
+			a[x-apple-data-detectors] {
+				color: inherit !important; text-decoration: inherit !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;
+			}
+			
+			.no-show-for-you {
+				border: none; display: none; float: none; font-size: 0; height: 0; line-height: 0; max-height: 0; mso-hide: all; overflow: hidden; table-layout: fixed; visibility: hidden; width: 0;
+			}
+
+		</style><!--[if mso]><xml> <o:OfficeDocumentSettings> <o:AllowPNG/> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml><![endif]--><style type="text/css">
+			a:link {
+				color: #0072ca; text-decoration: underline;
+			}
+
+		</style><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="background-color: rgb(239, 242, 247); width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="background-color: #eff2f7; width: 100%;" fr-original-class="nl2go-body-table"><tbody><tr><td fr-original-style="" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 0px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r0-o"><tbody><tr><td valign="top" style="background-color: rgb(239, 242, 247); border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #eff2f7;" fr-original-class="r1-i"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="600" align="center" style="table-layout: fixed; width: 600px; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 600px;" fr-original-class="r3-o"><tbody><tr><td style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-bottom: 6px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-bottom: 6px;" fr-original-class="r4-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="50%" valign="middle" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r5-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="left" fr-original-style="" fr-original-class="r8-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r9-o"><tbody><tr><td align="center" valign="top" style="line-height: 1.5; word-break: break-word; color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-top: 5px; text-align: center; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="line-height: 1.5; word-break: break-word; color: #3b3f44; font-family: Roboto; font-size: 13px; padding-top: 5px; text-align: center;" fr-original-class="r10-i nl2go-default-textstyle"><div>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2nfsTSzF50tlaorLNTMB40yT/mP1yH953OqAB" title="Scientist.com" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="0" templating="n">A Scientist.com Company</a></p>
+</div></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></th>
+<th width="50%" valign="middle" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r5-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="left" fr-original-style="" fr-original-class="r8-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r9-o"><tbody><tr><td align="center" valign="top" style="line-height: 1.5; word-break: break-word; color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-top: 5px; text-align: center; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="line-height: 1.5; word-break: break-word; color: #3b3f44; font-family: Roboto; font-size: 13px; padding-top: 5px; text-align: center;" fr-original-class="r10-i nl2go-default-textstyle"><div>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><a href="http://r.notification.biopharmcatalyst.com/mk/mr/sh/7nVTPdZCTJDXPIOlxg3FXGdDeiV75pF/QlgfLlw45yCs" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;">View this email in your browser</a></p>
+</div></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="600" align="center" style="table-layout: fixed; width: 600px; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 600px;" fr-original-class="r3-o"><tbody><tr><td valign="top" style="background-color: rgb(239, 242, 247); border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #eff2f7;" fr-original-class="r1-i"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r12-o"><tbody><tr><td style="background-color: rgb(255, 255, 255); color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-bottom: 20px; padding-top: 20px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #ffffff; color: #3b3f44; font-family: Roboto; font-size: 13px; padding-bottom: 20px; padding-top: 20px;" fr-original-class="r13-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="100%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; valign: top;" fr-original-class="r15-c"><img src="https://img.notification.biopharmcatalyst.com/im/sh/lqZ-D-8IdZNG.png?u=1N39KVvVK8itaGr7odbrTKnBdbwt4n7PoY" width="570" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="0"></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r12-o"><tbody><tr><td style="background-color: rgb(255, 255, 255); color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #ffffff; color: #3b3f44; font-family: Roboto; font-size: 13px;" fr-original-class="r16-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="50%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; valign: top;" fr-original-class="r17-c"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2nfuMSVkNzT02rDfBdifqkuz/vGilg-O4zK1O" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="1" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/TjeS1SGoP05G.png?u=1N39KVvVK8itaGr7odbrTKnBdbwt4n7PoY" width="270" title="Sign up" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="1"></a></td></tr></tbody></table></td></tr></tbody></table></th>
+<th width="50%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; valign: top;" fr-original-class="r17-c"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2nfwFS2Fgy2EUtZyzo5AdUrV/cLytEF0kIoNS" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="2" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/s105XDS-9lyP.png?u=1N39KVvVK8itaGr7odbrTKnBdbwt4n7PoY" width="270" title="Discord buttone" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="2"></a></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r12-o"><tbody><tr><td style="background-color: rgb(255, 255, 255); border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #ffffff;" fr-original-class="r18-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="100%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="padding-left: 15px; padding-right: 15px;" fr-original-class="r19-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" fr-original-style="" fr-original-class="r20-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" height="1" style="border-style: solid none none; background-clip: border-box; border-top-color: rgb(239, 242, 247); border-top-width: 1px; font-size: 1px; line-height: 1px; border-collapse: collapse; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; empty-cells: show; max-width: 100%;" fr-original-style="border-top-style: solid; background-clip: border-box; border-top-color: #eff2f7; border-top-width: 1px; font-size: 1px; line-height: 1px;"><tbody><tr><td height="0" style="font-size: 0px; line-height: 0px; border-collapse: collapse; min-width: 5px; user-select: text; border: 0px solid transparent; background: unset;" fr-original-style="font-size: 0px; line-height: 0px;">­</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r12-o"><tbody><tr><td style="background-color: rgb(255, 255, 255); border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #ffffff;" fr-original-class="r18-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="100%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="padding-left: 15px; padding-right: 15px;" fr-original-class="r19-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="left" fr-original-style="" fr-original-class="r8-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r9-o"><tbody><tr><td align="center" valign="top" style="color: rgb(59, 63, 68); font-family: arial, helvetica, sans-serif; font-size: 18px; word-break: break-word; line-height: 1; padding-bottom: 7px; padding-top: 15px; text-align: center; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 18px; word-break: break-word; line-height: 1; padding-bottom: 7px; padding-top: 15px; text-align: center;" fr-original-class="r21-i nl2go-default-textstyle"><div>
+
+<h2 style="margin: 0; color: #1f2d3d; font-family: arial,helvetica,sans-serif; font-size: 32px; word-break: break-word;" fr-original-style="margin: 0; color: #1f2d3d; font-family: arial,helvetica,sans-serif; font-size: 32px; word-break: break-word;" fr-original-class="default-heading2">&nbsp; Unlock Exclusive Discounts &amp; Access $630B in Science and VC Funding Data</h2>
+</div></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r12-o"><tbody><tr><td style="background-color: rgb(255, 255, 255); border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #ffffff;" fr-original-class="r18-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="100%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="padding-left: 15px; padding-right: 15px;" fr-original-class="r19-i"><p style="margin: 0; font-style: normal; font-weight: 400; text-decoration-style: initial; text-decoration-thickness: initial; text-size-adjust: 100%;" fr-original-style="margin: 0; font-style: normal; font-weight: 400; text-decoration-style: initial; text-decoration-thickness: initial; text-size-adjust: 100%;"> </p><p style="margin: 0; font-style: normal; font-weight: 400; text-decoration-style: initial; text-decoration-thickness: initial; text-size-adjust: 100%;" fr-original-style="margin: 0; font-style: normal; font-weight: 400; text-decoration-style: initial; text-decoration-thickness: initial; text-size-adjust: 100%;"><br></p><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="left" style="color: rgb(59, 63, 68); font-family: arial, helvetica, sans-serif; font-size: 18px; word-break: break-word; line-height: 1; padding-bottom: 15px; text-align: left; overflow-wrap: break-word; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 18px; word-break: break-word; line-height: 1; padding-bottom: 15px; text-align: left; valign: top; word-wrap: break-word;" fr-original-class="r23-c nl2go-default-textstyle"><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;"> </span><div><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;"></span>
+
+<p fr-original-style="" style="margin: 0px;"><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">We’ve partnered with </span><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2nfy8RYkzwbSwvwInyRfQEo1/rd9zVwqCYAW9" target="_blank" rel="noopener noreferrer" fr-original-style="" style="user-select: auto; color: rgb(0, 114, 202); text-decoration: underline;" sib_link_id="3" templating="n"><strong fr-original-style="" style="font-weight: 700;"><u>BYTE51</u></strong></a></span><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong fr-original-style="" style="font-weight: 700;"><u></u></strong> to offer you an <strong fr-original-style="" style="font-weight: 700;">exclusive 25% discount</strong> on their life science prospecting &amp; funding database!</span></p><p fr-original-style="" style="margin: 0px;"><br></p><p fr-original-style="" style="margin: 0px;"><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">BYTE51 has partnered with BioPharmCatalyst to bring you exclusive supplier and customer discounts! Access over <strong fr-original-style="" style="font-weight: 700;">$630 billion in science and VC funding data</strong> to fuel your business growth. BYTE51's weekly insights cover key sectors, including private equity, biotech, venture capital, asset management, and more. </span></p><p fr-original-style="" style="margin: 0px;"><br></p><p fr-original-style="" style="margin: 0px;"><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Customize search filters, receive daily notifications, and secure real-time Series A, B, and C company data to identify prospects instantly. BYTE51 combines VC funding and clinical stage data, empowering data-driven decisions and boosting sales. Start leveraging these insights today to increase your sales and prospects!</span>
+<br>
+</p>
+
+<span style="font-family: Arial,Helvetica,sans-serif;"></span><br>
+<ul fr-original-style="" style="margin: 0px;">
+</ul>
+
+<p style="text-align: left; margin: 0px;" fr-original-style="text-align: left;"><strong fr-original-style="" style="font-weight: 700;"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2ng01R5GIvAhOyIcc8oACykX/nv14E4P3Rc_D" fr-original-style="" style="user-select: auto; color: rgb(0, 114, 202); text-decoration: underline;" sib_link_id="4" templating="n"><span style="font-size: 14px;"></span></a></strong><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2ng1uQblbtjvr0ewQJAezih3/dvxBeAOdMBGb" fr-original-style="" style="user-select: auto; color: rgb(0, 114, 202); text-decoration: underline;" sib_link_id="5" templating="n"><span style="font-size: 14px;"></span></a><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2ng3nQ8GusJAJ31GETX9mSdZ/GnL0iE7mmmmg" target="_blank" rel="noopener noreferrer" fr-original-style="" style="user-select: auto; color: rgb(0, 114, 202); text-decoration: underline;" sib_link_id="6" templating="n"><span style="font-size: 14px;"><strong fr-original-style="" style="font-weight: 700;">Schedule a Free Demo Today &gt;&gt;&gt;</strong></span></a><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2ng5gPemDqsOl5Na2dteZCa5/b8Owii5jZP48" fr-original-style="" style="user-select: auto; color: rgb(0, 114, 202); text-decoration: underline;" sib_link_id="7" templating="n"><span style="font-size: 14px;"></span></a><strong fr-original-style="" style="font-weight: 700;"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2ng7ZPBHWpRdD7jtqoG9LwWb/HO-Q4bzhI2fR" fr-original-style="" style="user-select: auto; color: rgb(0, 114, 202); text-decoration: underline;" sib_link_id="8" templating="n"><span style="font-size: 14px;"></span></a></strong>
+<br>
+<br><span style="font-family: Arial, helvetica, sans-serif; font-size: 14px;">If you have any questions, please don’t hesitate to reach out to us directly at </span><a href="mailto:contact@biopharmcatalyst.com" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;"><span style="font-family: Arial, helvetica, sans-serif; font-size: 14px;">contact@biopharmcatalyst.com</span></a></p><p style="margin: 0; font-style: normal; font-weight: 400; text-decoration-style: initial; text-decoration-thickness: initial; text-size-adjust: 100%;" fr-original-style="margin: 0; font-style: normal; font-weight: 400; text-decoration-style: initial; text-decoration-thickness: initial; text-size-adjust: 100%;"><span style="font-family: Arial, helvetica, sans-serif; font-size: 14px;"></span></p></div></td></tr><tr><td align="center" style="font-size: 0px; line-height: 0px; padding-bottom: 15px; padding-top: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="font-size: 0px; line-height: 0px; padding-bottom: 15px; padding-top: 15px; valign: top;" fr-original-class="r22-c"><span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif;">&nbsp;&nbsp;<a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/7nVU1aA2ng9SOhmpo0rfA6Deyce8gT7/bchHwEEN7zGI" target="_blank" rel="noopener noreferrer" fr-original-style="" style="user-select: auto; color: rgb(0, 114, 202); text-decoration: underline;" sib_link_id="9" templating="n"><img src="https://img.notification.biopharmcatalyst.com/im/sh/96zxXOdf1lIq.jpg?u=1N39KVvVK8itaGr7odbrTKnBdbwt4n7PoY" alt="Content Library Image" style="width: 547px; display: inline-block; vertical-align: bottom; margin-right: 5px; margin-left: 5px; max-width: calc(100% - 10px); text-align: center; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative;" fr-original-style="width: 547px; display: inline-block; vertical-align: bottom; margin-right: 5px; margin-left: 5px; max-width: calc(100% - 10px); text-align: center;" fr-original-class="fr-draggable" sib_img_id="3"></a></span></td></tr>
+
+
+
+
+
+
+
+
+<tr><td align="center" fr-original-style="" fr-original-class="r20-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" height="1" style="border-style: solid none none; background-clip: border-box; border-top-color: rgb(239, 242, 247); border-top-width: 1px; font-size: 1px; line-height: 1px; border-collapse: collapse; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; empty-cells: show; max-width: 100%;" fr-original-style="border-top-style: solid; background-clip: border-box; border-top-color: #eff2f7; border-top-width: 1px; font-size: 1px; line-height: 1px;"><tbody><tr><td height="0" style="font-size: 0px; line-height: 0px; border-collapse: collapse; min-width: 5px; user-select: text; border: 0px solid transparent; background: unset;" fr-original-style="font-size: 0px; line-height: 0px;">­</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r12-o"><tbody><tr><td style="background-color: rgb(255, 255, 255); color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #ffffff; color: #3b3f44; font-family: Roboto; font-size: 13px;" fr-original-class="r16-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="50%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 15px; padding-top: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 15px; padding-top: 15px; valign: top;" fr-original-class="r24-c"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ6vLwtrvUV2TOOsYVuFcipNt/UjZ3Q35dDgva" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="10" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/TjeS1SGoP05G.png?u=1N39KVvVK8itaGr7odbrTKnBdbwt4n7PoY" width="270" title="Sign up" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="1"></a></td></tr></tbody></table></td></tr></tbody></table></th>
+<th width="50%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 13px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 15px; padding-top: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 15px; padding-top: 15px; valign: top;" fr-original-class="r24-c"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7390w5BqaW9A92Leh8jyX01/KEMVwYkywPn7" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="11" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/s105XDS-9lyP.png?u=1N39KVvVK8itaGr7odbrTKnBdbwt4n7PoY" width="270" title="Discord buttone" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="2"></a></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" align="center" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r12-o"><tbody><tr><td style="background-color: rgb(239, 242, 247); color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; padding-bottom: 20px; padding-top: 20px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background-image: unset; background-position: unset; background-size: unset; background-repeat: unset; background-attachment: unset; background-origin: unset; background-clip: unset;" fr-original-style="background-color: #eff2f7; color: #3b3f44; font-family: Roboto; font-size: 18px; padding-bottom: 20px; padding-top: 20px;" fr-original-class="r25-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="100%" valign="top" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r14-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r6-o"><tbody><tr><td valign="top" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; padding-left: 15px; padding-right: 15px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 18px; padding-left: 15px; padding-right: 15px;" fr-original-class="r7-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" fr-original-style="" fr-original-class="r26-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="570" align="center" style="table-layout: fixed; width: 570px; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 570px;" fr-original-class="r12-o"><tbody><tr><td valign="top" fr-original-style="" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 0px solid transparent; background: unset;"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><td align="center" style="display: inline-block; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="display: inline-block;" fr-original-class="r26-c"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="570" align="center" style="table-layout: fixed; width: 570px; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 570px;" fr-original-class="r12-o"><tbody><tr><td style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; padding: 10px 176px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 18px; padding-bottom: 10px; padding-left: 176px; padding-right: 176px; padding-top: 10px;" fr-original-class="r27-i"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" fr-original-style="" style="border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;"><tbody><tr><th width="62" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r28-c mobshow resp-table"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r29-o"><tbody><tr><td style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px;" fr-original-class="r30-i"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7Aw4yISCfzovtC8nU1rEEc9/Pa67pPLTeHGp" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="12" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/n_AcMSkb_Drl.png?u=1N39KVvVK8itaGr7odbrTKnBdbwt4n7PoY" width="32" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="4"></a></td>
+<td width="30" style="font-size: 0px; line-height: 1px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="font-size: 0px; line-height: 1px;" fr-original-class="nl2go-responsive-hide">­ </td></tr></tbody></table></th>
+<th width="62" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r28-c mobshow resp-table"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r29-o"><tbody><tr><td style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px;" fr-original-class="r30-i"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7Ij90ViYlTUhdLvwGuyTwEH/1Y2pHy0dBVsa" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="13" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/Il3c2Xfy_7dO.png?u=2BpAyz2gMiWncm2gTYJnGDkrYOnUh75vgz" width="32" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="5"></a></td>
+<td width="30" style="font-size: 0px; line-height: 1px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="font-size: 0px; line-height: 1px;" fr-original-class="nl2go-responsive-hide">­ </td></tr></tbody></table></th>
+<th width="62" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r28-c mobshow resp-table"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r29-o"><tbody><tr><td style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px;" fr-original-class="r30-i"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7QWD2iyuqxATNVj53o5jdqP/FQ3UmvXEwC-G" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="14" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/3MZrn1ya56UV.png?u=2BpAyz2gMiWncnvg03clpSCtuibf3bsfdV" width="32" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="6"></a></td>
+<td width="30" style="font-size: 0px; line-height: 1px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="font-size: 0px; line-height: 1px;" fr-original-class="nl2go-responsive-hide">­ </td></tr></tbody></table></th>
+<th width="32" style="font-weight: normal; text-align: left; background: unset; user-select: text; border: 1px solid transparent;" fr-original-style="font-weight: normal;" fr-original-class="r28-c mobshow resp-table"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r31-o"><tbody><tr><td style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 0px; line-height: 0px; padding-bottom: 5px; padding-top: 5px;" fr-original-class="r30-i"><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7YJH4wFGwQqF7fWDqhCzLSX/YXpfutK6bCHS" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="15" templating="n"> <img src="https://img.notification.biopharmcatalyst.com/im/sh/fvOmLss3UqI-.png?u=2BpAyz2gMiWncpofWYvkOgewH2PpQ6fPa1" width="32" border="0" style="display: block; width: 100%; outline: none; text-decoration: none; border: none; cursor: pointer; padding: 0px 1px; position: relative; max-width: 100%;" fr-original-style="display: block; width: 100%;" fr-original-class="fr-draggable" sib_img_id="7"></a></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr>
+<tr><td align="left" fr-original-style="" fr-original-class="r8-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r9-o"><tbody><tr><td align="center" valign="top" style="word-break: break-word; color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; line-height: 1; text-align: center; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="word-break: break-word; color: #3b3f44; font-family: Roboto; font-size: 18px; line-height: 1; text-align: center;" fr-original-class="r32-i nl2go-default-textstyle"><div>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><span style="font-size: 9px;">BioPharmCatalyst is not a registered investment advisory firm, and does not provide investment advice. While we do our best to ensure that the information we provide is accurate, we do not guarantee the accuracy of the information and it is not intended to be used as an investment recommendation. Past performance is not a guarantee of future results. Investing comes with financial risk. Invest at your own risk.</span></p>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><span style="font-size: 9px;">Please see below for our complete Terms of Use and Privacy Policy.</span>
+<br><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7g6L79Vd1uW0rpJMdaKF34f/SSuHP24ynZkt" title="Terms Of Use" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="16" templating="n"><span style="font-size: 9px;">Terms of Use</span></a><span style="font-size: 9px;">                       </span><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7ntP9Mlz7OBmbz6VQTRUkgn/3-oz0P4li5hc" title="Privacy Policy" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="17" templating="n"><span style="font-size: 9px;"> Privacy Policy</span></a></p>
+</div></td></tr></tbody></table></td></tr>
+<tr><td align="center" style="color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; padding: 10px 10px 11px; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="color: #3b3f44; font-family: Roboto; font-size: 18px; padding-bottom: 11px; padding-left: 10px; padding-right: 10px; padding-top: 10px;" fr-original-class="r33-c"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" height="1" style="border-style: solid none none; background-clip: border-box; border-top-color: rgb(74, 74, 74); border-top-width: 1px; font-size: 1px; line-height: 1px; border-collapse: collapse; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; empty-cells: show; max-width: 100%;" fr-original-style="border-top-style: solid; background-clip: border-box; border-top-color: #4A4A4A; border-top-width: 1px; font-size: 1px; line-height: 1px;"><tbody><tr><td height="0" style="font-size: 0px; line-height: 0px; border-collapse: collapse; min-width: 5px; user-select: text; border: 0px solid transparent; background: unset;" fr-original-style="font-size: 0px; line-height: 0px;">­</td></tr></tbody></table></td></tr>
+<tr><td align="left" fr-original-style="" fr-original-class="r8-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r9-o"><tbody><tr><td align="center" valign="top" style="word-break: break-word; color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; line-height: 1.5; text-align: center; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="word-break: break-word; color: #3b3f44; font-family: Roboto; font-size: 18px; line-height: 1.5; text-align: center;" fr-original-class="r34-i nl2go-default-textstyle"><div>
+
+<p style="margin: 0; color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 16px;" fr-original-style="margin: 0; color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 16px;"><span style="font-size: 11px;"><strong fr-original-style="" style="font-weight: 700;">Copyright © 2026 Scientist.com, All rights reserved.</strong></span></p>
+</div></td></tr></tbody></table></td></tr>
+<tr><td align="left" fr-original-style="" fr-original-class="r8-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r9-o"><tbody><tr><td align="center" valign="top" style="word-break: break-word; color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; line-height: 1; text-align: center; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="word-break: break-word; color: #3b3f44; font-family: Roboto; font-size: 18px; line-height: 1; text-align: center;" fr-original-class="r32-i nl2go-default-textstyle"><div>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><span style="font-size: 11px;">Our mailing address is:</span>
+<br><span style="font-size: 11px;">Scientist.com</span>
+<br><span style="font-size: 11px;">505 Lomas Santa Fe Dr UNIT 110</span>
+<br><span style="font-size: 11px;">Solana Beach, CA 92075</span></p>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"> </p>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><span style="font-size: 11px;">Want to change how you receive these emails?</span>
+<br><span style="font-size: 11px;">Sign into your BPC account to </span><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ7vgTBa2LCrrYM8teDMYkSIv/LR0S3LJGVZmM" title="BPC Newsletter Preferences" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="18" templating="n"><span style="font-size: 11px;">unsubscribe</span></a></p>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"> </p>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><span style="font-size: 11px;">Don't have an account with us?</span>
+<br><span style="font-size: 11px;">Update your </span><a href="http://r.notification.biopharmcatalyst.com/mk/up/sh/7nVTPdhloEl2COnEDxJ5HgIGaSJOsIH/qCTFLwsv1yuX" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;"><span style="font-size: 11px;">newsletter preferences</span></a><span style="font-size: 11px;"> or </span><a href="http://r.notification.biopharmcatalyst.com/mk/un/sh/7nVTPdbLJ2bPbZUt1kMhyN2yt9SBXRV/g0EG9qSti3mH" title="Global Unsubscribe" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;"><span style="font-size: 11px;">stop receiving all emails</span></a></p>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"> </p>
+
+<p style="margin: 0;" fr-original-style="margin: 0;"><span style="font-size: 11px;">NOTE: If you wish to cancel your BioPharmCatalyst subscription, you must do so via the </span><a href="http://r.notification.biopharmcatalyst.com/mk/cl/f/sh/WCPzyXJTZ83TXDnIhILXK6Ign0Fg09v3/A2N7ISM9eg9m" title="Website Unsub" target="_blank" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;" sib_link_id="19" templating="n"><span style="font-size: 11px;">website</span></a><span style="font-size: 11px;">. Unsubscribing from this newsletter does NOT remove your subscription to BioPharmCatalyst.</span></p>
+</div></td></tr></tbody></table></td></tr>
+<tr><td align="left" fr-original-style="" fr-original-class="r8-c" style="border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: none; empty-cells: show; max-width: 100%;" fr-original-style="table-layout: fixed; width: 100%;" fr-original-class="r9-o"><tbody><tr><td align="center" valign="top" style="word-break: break-word; color: rgb(59, 63, 68); font-family: Roboto; font-size: 18px; line-height: 1.5; padding-bottom: 15px; padding-top: 15px; text-align: center; border-collapse: collapse; min-width: 5px; user-select: text; border: 1px solid transparent; background: unset;" fr-original-style="word-break: break-word; color: #3b3f44; font-family: Roboto; font-size: 18px; line-height: 1.5; padding-bottom: 15px; padding-top: 15px; text-align: center;" fr-original-class="r35-i nl2go-default-textstyle"><div>
+
+<p style="margin: 0; font-size: 14px;" fr-original-style="margin: 0; font-size: 14px;"><a href="http://r.notification.biopharmcatalyst.com/mk/mr/sh/7nVTPdZCTJDXPIOlxg3FXGdDeiV75pF/QlgfLlw45yCs" style="color: rgb(0, 114, 202); text-decoration: underline; user-select: auto;" fr-original-style="color: #0072ca; text-decoration: underline;"><span style="font-size: 14px;">View in browser</span></a></p>
+</div></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>   </body>
+</div>
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head><!--[if gte mso 9]>   <xml>     <o:OfficeDocumentSettings>       <o:AllowPNG/>       <o:PixelsPerInch>96</o:PixelsPerInch>     </o:OfficeDocumentSettings>   </xml> <!--><!--[if gte mso 9]>   <style>     html, body { font-family:Helvetica, Arial, sans-serif !important; }      table, td, th, a, span, font, p, div { font-family: Helvetica, Arial, sans-serif !important; }    </style> <!--><!--[if mso]> <style type="text/css">   * Begin Outlook Font Fix */     body, table, td , p, h1, h2, h3{       font-family: Arial, Helvetica, sans-serif ;       line-height:1;       max-height: 100%;       height: auto;       webkit-text-size-adjust:none;        mso-line-height-rule: exactly;     }     img{       height: auto;     } /* End Outlook Font Fix */ </style> <!-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="x-apple-disable-message-reformatting">  
+
+<!-- CUSTOM FONTS -->
+<link href="http://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+<style type="text/css" media="screen">
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+@font-face {
+  font-family: "Takeaway Sans Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-regular.eot");
+  src: local("Takeaway Sans Regular"),
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-regular.eot?#iefix") format("embedded-opentype"), url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-regular.woff2") format("woff2"), url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-regular.woff") format("woff"), url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Takeaway Sans Bold";
+  font-style: bold;
+  font-weight: 700;
+  src: url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-bold.eot");
+  src: local("Takeaway Sans Bold"),
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-bold.eot?#iefix") format("embedded-opentype"), 
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-bold.woff2") format("woff2"), 
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-bold.woff") format("woff"), 
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Takeaway Sans Campaign";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-campaign.eot");
+  src: local("Takeaway Sans Campaign"),
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-campaign.eot?#iefix") format("embedded-opentype"), 
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-campaign.woff2") format("woff2"), 
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-campaign.woff") format("woff"), 
+  url("https://assets.takeaway.com/fonts/takeaway-sans/takeaway-sans-campaign.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-regular.eot");
+  src: local("Open Sans"), local("OpenSans"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-regular.eot?#iefix") format("embedded-opentype"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-regular.woff2") format("woff2"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-regular.woff") format("woff"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-600.eot");
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-600.eot?#iefix") format("embedded-opentype"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-600.woff2") format("woff2"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-600.woff") format("woff"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-600.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-700.eot");
+  src: local("Open Sans Bold"), local("OpenSans-Bold"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-700.eot?#iefix") format("embedded-opentype"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-700.woff2") format("woff2"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-700.woff") format("woff"),
+  url("https://assets.takeaway.com/fonts/opensans/open-sans-v13-latin-700.ttf") format("truetype");
+}
+</style>
+<!-- CUSTOM FONTS -->
+
+
+
+<!-- CSS -->
+<style type="text/css">
+html { height: 100%; width: 100%; margin: 0; padding: 0; background-color: #EFEBE7; }
+body {
+  background-color: #EFEBE7;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  max-width: 2000px;
+}
+ReadMsgBody {  width: 100%; background-color: #EFEBE7; }
+ExternalClass { width: 100%; min-width: 640px; background-color: #EFEBE7; }
+ExternalClass * { line-height: 100%; background-color: #EFEBE7; }
+#MessageViewBody, #MessageWebViewDiv{
+    width: 100% !important;
+    margin: 0px auto !important;
+} 
+  
+table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+table td {  border: 0; }
+th { padding: 0; font-weight: normal; }
+p { margin: 0; padding: 0; margin-bottom: 0; }
+
+
+img { line-height: 100%; outline: none; text-decoration: none; border: 0px;}
+img, img.CToWUd,.CToWUd{
+  display: inline-block !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+a[x-apple-data-detectors]{
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}
+  
+show { display: none; }
+content-wrapper {  margin: 0 auto;}
+
+nv-headline1, .nv-headline2, .nv-headline3,
+nv-headline1 *, .nv-headline2 *, .nv-headline3 * {
+  font-weight: bold !important;
+  font-family:'Takeaway Sans Regular', 'Open Sans', 'Century Gothic', Helvetica, Arial, sans-serif !important; 
+}
+
+h1,h2,h3{ margin: 0px !important; font-family:'Takeaway Sans Regular', 'Open Sans', 'Century Gothic', Helvetica, Arial, sans-serif !important;  }
+*{ -webkit-text-size-adjust: none !important; }
+
+footer-area, .footer-area *{
+ color: #ffffff;
+}
+  
+@media only screen and (max-width:480px) {
+  *, *::before, *::after { box-sizing: border-box; }
+  body { width: auto !important; }
+  .content-wrapper { width: 92% !important; margin: 0 auto; }
+
+  .full-width { width: 100% !important; max-width: 100% !important; min-width: 100% !important; }
+  .full-width-img img { width: 100% !important; height: auto !important; display: block !important; }
+  .column, .column-spacer, .column-spacer2, .column-spacer-small { display: block !important; width: 100% !important; height: auto !important; }
+  .column-spacer { height: 20px !important; }
+  .column-spacer-small { height: 10px !important; }
+  .column-spacer-50{ height: 50px !important; }
+  .rest_name_185 {width:185px !important}
+  .nav { padding: 0 8px !important; }
+
+
+  .center { text-align: center !important; }
+  table.center { margin: 0 auto !important; }
+  .left { text-align: left !important; }
+  table.left { float: left !important; }
+
+  .pad-lr-20{ padding-left: 20px !important; padding-right: 20px !important;  }
+  .pad-lr-25{ padding-left: 20px !important; padding-right: 25px !important;  }
+  .pad-lr-30{ padding-left: 30px !important; padding-right: 30px !important;  }
+
+
+  .mobile-hide { display: none!important; }
+  .show {
+    display: block!important;
+    margin: 0!important;
+    padding: 0!important;
+    overflow: visible!important;
+    width: auto!important;
+    max-height: inherit!important;
+    line-height: inherit!important;
+  }
+
+  .border-off { border: none !important; }
+  .border-on { border-top:1px dashed #d6d6d6 !important; }
+  .font-10{ font-size: 10px !important; }
+
+}
+
+
+@media only screen and (max-width: 640px)  {
+  .height-auto{ height: auto !important; }
+  .content-wrapper { width: 92% !important; margin: 0 auto; }
+  .device100 { width: 100% !important; padding:0; height: auto !important; float: none !important; } 
+  .device95 { width: 95% !important; padding:0; height: auto !important; float: none !important; } 
+  .device90 { width: 90% !important; padding:0; height: auto !important; float: none !important; } 
+  .device85 { width: 85% !important; padding:0; height: auto !important; float: none !important; } 
+  .device80 { width: 80% !important; padding:0; height: auto !important; float: none !important; } 
+
+  .device100px { width: 100px !important; padding:0; height: auto !important; float: none !important; } 
+  .device150px { width: 150px !important; padding:0; height: auto !important; float: none !important; } 
+  
+  /* MOBILE GLOBAL STYLES - DO NOT CHANGE */
+  .nv-headline1, .nv-headline1 * { font-size: 21px !important; }
+  .nv-headline2, .nv-headline2 * { font-size: 18px !important; }
+  .nv-headline3, .nv-headline3 * { font-size: 18px !important; }
+  
+  .pad-lr-0{  padding-left: 0px !important;  padding-right: 0px !important;   }
+  .pad-lr-20{ padding-left: 20px !important; padding-right: 20px !important;  }
+  .pad-lr-25{ padding-left: 20px !important; padding-right: 25px !important;  }
+  .pad-lr-30{ padding-left: 30px !important; padding-right: 30px !important;  }
+
+}
+
+
+
+
+
+      
+</style>
+<!-- CSS -->
+
+
+
+</head>
+<body bgcolor="#F8F5F2" style="box-sizing:border-box;margin:0;padding:0;width:100%;">
+
+
+<!-- WRAPPER 1 -->
+<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" class="wrapper">
+<tr>
+<td align="center" bgcolor="#F8F5F2" style="padding: 15px 0 50px;">
+
+
+
+
+
+<!-- CONTAINER --->
+<table width="640" class="content-wrapper" align="center" border="0" cellpadding="0" cellspacing="0" style="table-layout:fixed;">
+<tr>
+
+<td align="center" style="padding: 0px;">
+<table class="device100" width="640" cellspacing="0" cellpadding="0" border="0" align="center">
+<tr>
+<td align="center" bgcolor="#F8F5F2">
+
+
+
+
+
+</td>
+</tr>
+<tr>
+<td align="center">
+<!----><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+
+
+
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<link rel="icon" href="https://www.thuisbezorgd.nl/assets/images/favicon.ico" type="image/x-icon">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="x-apple-disable-message-reformatting">
+<!--[if !mso]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-->
+<!--[if gte mso 9]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<!-->
+<!--[if gte mso 9]>
+<style type="text/css">
+html, body { font-family: Helvetica, Arial, sans-serif !important; } 
+table, td, th, a, span, font, p, div { font-family: Helvetica, Arial, sans-serif !important; } 
+</style>
+<!-->
+<!--[if mso]>
+<style type="text/css">
+* Begin Outlook Font Fix */
+body, table, td , p, h1, h2, h3 {
+font-family: Arial, Helvetica, sans-serif;
+line-height: 1;
+max-height: 100%;
+height: auto;
+webkit-text-size-adjust: none; 
+mso-line-height-rule: exactly;
+}
+img { height: auto; }
+/* End Outlook Font Fix */
+</style>
+<!-->
+<!-- CUSTOM FONTS -->
+<style type="text/css">
+  @font-face {
+    font-family: "JETSans-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-Regular.woff");
+    src: local("JETSans-Regular"),
+      url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-Regular.woff") format("woff");
+  }
+  @font-face {
+    font-family: "JETSans-Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-Bold.woff");
+    src: local("JETSans-Bold"),
+      url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-Bold.woff") format("woff");
+  }
+  @font-face {
+    font-family: "JETSans-ExtraBold";
+    font-style: normal;
+    font-weight: 800;
+    src: url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-ExtraBold.woff");
+    src: local("JETSans-Bold"),
+      url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-ExtraBold.woff") format("woff");
+  }
+  @font-face {
+    font-family: "JETSans-Black";
+    font-style: normal;
+    font-weight: 900;
+    src: url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-Black.woff");
+    src: local("JETSans-Black"),
+    url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-Black.woff") format("woff");
+  }       
+  @font-face {
+    font-family: "JETSans-BlackItalic";
+    font-style: normal;
+    font-weight: 900;
+    src: url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-BlackItalic.woff");
+    src: local("JETSans-BlackItalic"),
+    url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-BlackItalic.woff") format("woff");
+  }
+  @font-face {
+    font-family: "JETSans-ExtraBlack";
+    font-style: normal;
+    font-weight: 1000;
+    src: url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-ExtraBlack.woff");
+    src: local("JETSans-ExtraBlack"),
+    url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-ExtraBlack.woff") format("woff");
+  }
+  @font-face {
+    font-family: "JETSans-ExtraBlackItalic";
+    font-style: normal;
+    font-weight: 1000;
+    src: url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-ExtraBlackItalic.woff");
+    src: local("JETSans-ExtraBlackItalic"),
+    url("https://res.cloudinary.com/jet-dam-crm/raw/upload/Email/SFMC%20Template%20Images/fonts/JETSans-ExtraBlackItalic.woff") format("woff");
+  }
+</style>
+<!-- CUSTOM FONTS -->
+<!-- CSS -->
+<style type="text/css">
+  * { -webkit-text-size-adjust: none !important; }
+  html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+  }
+  body {
+    background-color: #FFFFFF;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+  table {
+    border-collapse: collapse;
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+  }
+  table td {
+    border-collapse: collapse;
+    border: 0;
+  }
+  table td a { color: inherit; }
+  th {
+    padding: 0;
+    font-weight: normal;
+  }
+  h1, h2, h3 { margin: 0px !important; }
+  p {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  img {
+    line-height: 100%;
+    outline: none;
+    text-decoration: none;
+    border: 0px;
+  }
+  img, img.CToWUd, .CToWUd {
+    display: inline-block !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .show { display: none; }
+  .float-left { float: left !important; }
+  @media only screen and (max-width: 640px) {
+    .device100 { 
+      width: 100% !important;
+      padding: 0;
+      height: auto !important;
+      float: none !important;
+    }
+    .show {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        width: auto !important;
+        max-height: inherit !important;
+        line-height: inherit !important;
+    }
+    .mobile-hide { display: none !important; }
+    .float-left { float: none !important; }
+    .text-align-center { text-align: center !important; }
+    .logo-tab {
+      height: auto !important;
+      max-height: 60px !important;
+      max-width: 50% !important;
+    }
+    .hero-img {
+      width: 230px !important;
+      max-width: 230px !important;
+    }
+    .hero-headline { font-size: 38px !important; }
+    .hero-body { font-size: 16px !important; }
+    .hero-cta { font-size: 22px !important; }
+    .announcementbar-copy { font-size: 14px !important; }
+    .orderdata-container { padding: 30px 25px !important; }
+    .orderdata-title {
+      font-size: 24px !important;
+      line-height: 0.9 !important;
+    }
+    .orderdata-ordernumber-container { padding-bottom: 30px !important; }
+    .orderdata-ordernumber {
+      font-size: 22px !important;
+      padding-left: 30px !important;
+      padding-right: 30px !important;
+    }
+    .orderdata-restlogo-bg {
+      width: 75px !important;
+      height:  75px !important;
+    }
+    .orderdata-restlogo-img { max-width: 65px !important; }
+    .orderdata-restname {
+      font-size: 22.5px !important;
+      padding: 5px 0 !important;
+    }
+    .orderdata-item, .orderdata-subitem { font-size: 14px !important; }
+    .orderdata-item { padding-top: 15px !important; }
+    .orderdata-item-width { width: 20px !important; }
+    .orderdata-subtotal {
+      font-size: 15px !important;
+      padding-top: 15px !important;
+    }
+    .orderdata-total {
+      font-size: 16px !important;
+      padding-top: 15px !important;
+    }
+    .orderdata-divider, .orderdata-divider-items { margin-bottom: 15px !important; }
+    .orderdata-divider { margin-top: 0 !important; }
+    .orderdata-divider-items, .orderdata-divider-subtotals { margin-top: 15px !important; }
+    .orderdata-servicefee-title, .orderdata-servicefee-fee, .orderdata-note-title { font-size: 15px !important; }
+    .orderdata-servicefee-title { padding-bottom: 5px !important; }
+    .orderdata-servicefee-fee { padding-top: 5px !important; }
+    .orderdata-note-title { padding-top: 10px !important; }
+    .orderdata-servicefee-info, .orderdata-note-text, .orderdata-additionalinfo { font-size: 14px !important; }
+    .orderdata-additionalinfo { padding-top: 10px !important; }
+    .orderdata-divider-servicefee, .orderdata-divider-notes { margin-top: 15px !important; }
+    .orderdata-divider-servicefee { margin-bottom: 15px !important; }
+    .orderdata-divider-notes { margin-bottom: 5px !important; }
+    .orderdata-outofstock-container { padding: 5px 12px 15px !important; }
+    .orderdata-outofstock-icon { 
+      max-width: 15px !important; 
+      padding-right: 5px !important;
+    }
+    .orderdata-outofstock-headline { font-size: 15px !important; }
+    .orderdata-outofstock-icon, .orderdata-outofstock-headline {
+      padding-top: 10px !important; 
+      padding-bottom: 10px !important;
+    }
+    .orderdata-outofstock-item, .orderdata-outofstock-subtotal-label, 
+    .orderdata-outofstock-subtotal-amount, .orderdata-outofstock-info { font-size: 11px !important; }
+    .orderdata-outofstock-total-label, .orderdata-outofstock-total-amount { font-size: 14.5px !important; }
+    .orderdata-outofstock-divider {
+      margin-top: 5px !important;
+      margin-bottom: 5px !important;
+    }
+    .compact-banner-body {
+      padding-top: 0 !important;
+      padding-right: 30px !important;
+      padding-bottom: 30px !important;
+      padding-left: 30px !important;
+    }
+    .help-survey-headline {
+      font-family: 'JETSans-ExtraBlackItalic', Helvetica, Arial Black, Arial, sans-serif !important;
+      font-weight: 900 !important;
+      font-size: 20px !important;
+    }
+  }
+</style>
+<!-- CSS -->
+</head><div style="display:none!important;visibility:hidden;mso-hide:all;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">Your account's set up, you're good to go.</div>
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF"><tr><td align="center"><!--[if (gte mso 9)|(IE)]><table width="640" cellspacing="0" cellpadding="0" border="0" align="center"><tr><td><!--><table cellpadding="0" cellspacing="0" border="0" width="640" style="max-width: 640px; width: 100%;"><tr><td align="center" style="font-size: 0"><table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #FCFCFC;"><tr><td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td style="display: none !important">
+<div style="display:none!important; max-height: 0px; overflow:
+ hidden;">&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;
+â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;
+â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;
+â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;
+â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ&nbsp;â€Œ</div></td></tr><tr><td>  
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="device100" width="640" style="width: 640px;" bgcolor="#FCFCFC"><tr><td align="center" bgcolor="#FCFCFC"><table align="center" border="0" cellpadding="0" cellspacing="0" class="device100" width="640" style="width: 640px;"><tr><td align="center">   <table align="center" border="0" cellpa="" dding="0" cellspacing="0" width="100%"><tr>  <td align="center" style="padding-bottom: 30px;"><center>
+<p>&nbsp;</p>
+<!-- [if mso]>
+    <noscript>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    </noscript>
+    <![endif]-->
+<table style="background-color: #050505; padding: 20px 0;" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td align="center">
+<!-- Main Container -->
+<table class="container" style="background-color: #121212; border-radius: 16px; overflow: hidden; border: 2px solid #FF003C; box-shadow: 0 0 20px rgba(255,0,60,0.4);" border="0" width="500" cellspacing="0" cellpadding="0">
+<tbody>
+<!-- Aggressive Header Banner -->
+<tr>
+<td style="padding: 14px; font-size: 15px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 1.5px; background: linear-gradient(90deg, #FF003C 0%, #FF4A5A 100%);" align="center">
+⚡ PRIVATE INVITE: EXPIRES IN <span style="background: #000; padding: 2px 8px; border-radius: 4px; color: #00FF66;">04:59</span>
+</td>
+</tr>
+
+<!-- Dynamic Sub-header -->
+<tr>
+<td style="padding: 10px 20px; background-color: #1f1f1f; color: #ffbc00; font-size: 13px; font-weight: bold; text-align: center;" align="center">
+⚠️ 1 New Private Video Message Is Waiting For You
+</td>
+</tr>
+
+<!-- Hero Image Section -->
+<tr>
+<td style="position: relative; background-color: #000000;" align="center">
+<a href="https://buff.ly/UcjXPms" target="_blank" rel="noopener"> 
+<img style="width: 100%; max-width: 500px; height: auto; border: 0; display: block;" src="https://via.placeholder.com/500x450/121212/FFFFFF?text=⚠️+UNLOCK+PRIVATE+PHOTOS+%26+VIDEO" alt="Private Profile" width="500"> 
+</a>
+</td>
+</tr>
+
+<!-- Profile Info & Aggressive Trigger -->
+<tr>
+<td style="padding: 25px 30px 10px 30px;" align="left">
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>
+<h1 style="margin: 0; font-size: 28px; font-weight: 900; color: #ffffff; line-height: 32px;">
+Elena, 25 <span style="color: #00FF66; font-size: 14px; vertical-align: middle; background: rgba(0,255,102,0.1); padding: 3px 8px; border-radius: 12px;">● 200m Away</span>
+</h1>
+<p style="margin: 6px 0 15px 0; font-size: 15px; color: #FF003C; font-weight: bold;">
+📍 Kyiv, Ukraine ➔ Willing to Relocate
+</p>
+<hr style="border: 0; border-top: 1px solid #333333; margin-bottom: 15px;">
+<p style="margin: 0; font-size: 16px; line-height: 24px; color: #e1e1e1; font-weight: 500;">
+&quot;I'm tired of waiting. I just sent you a private video setup—don't make me wait long. I prefer older, secure men who take charge. **Are you online or should I find someone else?**&quot;
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+
+<!-- Simulated Audio/Video Call Box -->
+<tr>
+<td style="padding: 15px 30px;" align="center">
+<table style="background-color: #1a0005; border-radius: 10px; border: 1px solid #FF003C;" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="padding: 15px; color: #ffffff; font-size: 14px;">
+<div style="float: left; margin-right: 12px; font-size: 24px;">🎥</div>
+<div>
+<strong style="color: #FF003C; font-size: 15px;">Private Video Clip Attached (0:42)</strong><br>
+<span style="color: #aaaaaa; font-size: 12px;">Status: Unopened • Auto-deletes when timer hits 00:00</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+
+<!-- Aggressive CTA Button -->
+<tr>
+<td style="padding: 15px 30px 35px 30px;" align="center">
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="border-radius: 8px; background: linear-gradient(180deg, #FF003C 0%, #B3002A 100%);" align="center">
+<a style="font-size: 20px; font-family: Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 8px; padding: 20px 0; display: block; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(255,0,60,0.5);" href="https://buff.ly/UcjXPms" target="_blank" rel="noopener">
+👉 WATCH VIDEO &amp; RESPOND NOW 👈
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+
+<!-- Footer -->
+<tr>
+<td style="padding: 20px 30px; text-align: center; border-top: 1px solid #222;" bgcolor="#050505">
+<p style="margin: 0; font-size: 11px; color: #555555;">You received this priority matching notification based on your location and age filter preference.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+
+
+
+
+
+
+<div dir="ltrdata-setdIR=false" style="height:2px;max-height:2px;overflow-y:hidden ;color:#ffe"><option><option><option><option><option><option><option>
+<option><option><option><option><option><option><option>
+<option><option><option><option><option><option><option>
+<area><area><area><area><area><area>
+<area><area><area><area><area><area>
+<area><area><area><area><area><area>
+<b>
+<b>
+<b>
+<b>
+<b>
+<basefont><basefont><basefont><basefont><basefont><basefont><basefont><basefont>
+<basefont><basefont><basefont><basefont><basefont><basefont><basefont><basefont>
+<basefont><basefont><basefont><basefont><basefont><basefont><basefont><basefont>
+<samp>
+<samp>
+<samp>
+<samp>
+<samp>
+<samp>
+<samp>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<textarea src="" width="1" height="1" style="display:none !important;" alt="">
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;b&gt;
+&lt;b&gt;
+&lt;b&gt;
+&lt;b&gt;
+&lt;b&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+&lt;html&gt;
+&lt;html&gt;
+&lt;html&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;button class=&quot;center_align&quot; style=&quot;vertical-align: top;&quot; valign=&quot;top&quot; align=&quot;left&quot;&gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;
+&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;
+&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;
+&lt;template&gt;&lt;template&gt;&lt;template&gt;
+&lt;template&gt;&lt;template&gt;&lt;template&gt;
+&lt;template&gt;&lt;template&gt;&lt;template&gt;
+&lt;template&gt;&lt;template&gt;&lt;template&gt;
+&lt;template&gt;&lt;template&gt;&lt;template&gt;
+&lt;template&gt;&lt;template&gt;&lt;template&gt;
+&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;div class=&quot;LvO9eCMJ4itQRqM&quot; class=&quot;g95Y&quot; class=&quot;d-a48-fEeu-bb69bc-0bd633&quot;&gt;
+&lt;div class=&quot;MiHsnwIY4gppBnB&quot; class=&quot;2&quot; class=&quot;e1-fd06-44b-ViHA-b2f62b5ba3&quot;&gt;
+&lt;div class=&quot;2ZznyrYnDgsxijF&quot; class=&quot;134b&quot; class=&quot;JZ59-9-e-ba3-bd2acdea9d&quot;&gt;
+&lt;div class=&quot;TNSsz1Jee97bNkR&quot; class=&quot;06e4aac4&quot; class=&quot;b0b1beb-dee-P0ap-b-5bcf04acafc4&quot;&gt;
+&lt;div class=&quot;pmqqc6OcjiWAgJ8&quot; class=&quot;3&quot; class=&quot;2afa0a-bae-Lesy-0d7-1c6378c&quot;&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+&lt;td class=&quot;GuP7&quot; class=&quot;Yi1r&quot; class=&quot;9r11-ccc-6166-accba9a0-faa&quot;&gt;
+&lt;td class=&quot;nxL9&quot; class=&quot;26&quot; class=&quot;9-acf-1e-WHoN-cb6bc2cbf9&quot;&gt;
+&lt;td class=&quot;ceBh&quot; class=&quot;c&quot; class=&quot;e-f3-b-15dca-645dee3d2&quot;&gt;
+&lt;ins height=&quot;20&quot; style=&quot;line-height:1px;font-size:1px;&quot;&gt;
+&lt;ins height=&quot;20&quot; style=&quot;line-height:1px;font-size:1px;&quot;&gt;
+&lt;ins height=&quot;20&quot; style=&quot;line-height:1px;font-size:1px;&quot;&gt;
+&lt;ins height=&quot;20&quot; style=&quot;line-height:1px;font-size:1px;&quot;&gt;
+&lt;ins height=&quot;20&quot; style=&quot;line-height:1px;font-size:1px;&quot;&gt;
+&lt;ins height=&quot;20&quot; style=&quot;line-height:1px;font-size:1px;&quot;&gt;
+&lt;dialog&gt;
+&lt;dialog&gt;
+&lt;dialog&gt;
+&lt;dialog&gt;
+&lt;dialog&gt;
+&lt;dialog&gt;
+&lt;dialog&gt;
+&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;
+&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;&lt;object&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+&lt;s&gt;
+&lt;s&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;
+&lt;div class=&quot;d&quot; class=&quot;0df&quot; class=&quot;1a569e-0-cff3-5-636d2&quot;&gt;
+&lt;div class=&quot;eiy4yfsxrXWX4tM&quot; class=&quot;07&quot; class=&quot;06-rhGC-2-43b81-c78b01a1&quot;&gt;
+&lt;div class=&quot;Ls9hinau0ZfyvUb&quot; class=&quot;7Up99&quot; class=&quot;edf3d-aa-TMp7-3d3-de9&quot;&gt;
+&lt;div class=&quot;ZyHf4xNqH1POF8F&quot; class=&quot;c&quot; class=&quot;acbb1-8e74-f9-6-a4d&quot;&gt;
+&lt;div class=&quot;j8WzdlCc&quot; class=&quot;8EIaN1OCvpYSJJX&quot; class=&quot;9d6-F2yL-70fc9-c4-G1X1&quot;&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;tfoot&gt;
+&lt;h3&gt;
+&lt;h3&gt;
+&lt;h3&gt;
+&lt;html&gt;
+&lt;html&gt;
+&lt;html&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;cite&gt;
+&lt;cite&gt;
+&lt;cite&gt;
+&lt;cite&gt;
+&lt;div class=&quot;HqX3YgAxMAdnZXK&quot; class=&quot;lqNMS&quot; class=&quot;a-6emP-7-0-Sgqc&quot;&gt;
+&lt;div class=&quot;enjBIoQVJYKraFM&quot; class=&quot;9LpBwyX&quot; class=&quot;9aEP4dk-e-d18-9-207&quot;&gt;
+&lt;div class=&quot;yeXC631xk8R05rH&quot; class=&quot;dUVD2&quot; class=&quot;7rTMXDt-6c-f-KvvDyL-ba3&quot;&gt;
+&lt;div class=&quot;Vviu0pigOeWg6wr&quot; class=&quot;yHmyI1&quot; class=&quot;9cd68-bf-906-d9ace2ce-yZ9TkkxUkV&quot;&gt;
+&lt;div class=&quot;15zggJCD7yDLbyr&quot; class=&quot;xU1sZ97f&quot; class=&quot;edd-xTcD-71e57-ed67e-41&quot;&gt;
+&lt;iframe&gt;
+&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot;&gt;
+&lt;center class=&quot;xxJvXaM8Qmow8VN&quot; class=&quot;dda&quot; class=&quot;ba-a90-tHRwk-QVOa-efe5&quot;&gt;
+&lt;center class=&quot;wN7dQwzmek5hn9dHB&quot; class=&quot;7&quot; class=&quot;eecad-41f-QVOa-d-sQ7QIP&quot;&gt;
+&lt;center class=&quot;nfIUl1PQEdkTBII&quot; class=&quot;QwuJp2Jj&quot; class=&quot;TWEw6jKy-34-88246-r7DuTOgd-d&quot;&gt;
+&lt;center class=&quot;FIxTbXBtlU9GdYDsISgtE3WnO&quot; class=&quot;LMoVSukM&quot; class=&quot;a5fe670-GT20-2-027-KvvDyL&quot;&gt;
+&lt;center class=&quot;zTX0YA9WlYHCbDNVw8TijA67hBGv249x5W7&quot; class=&quot;5167e7&quot; class=&quot;CHsbHdX-920-db-3iLn-KvvDyL&quot;&gt;
+&lt;center class=&quot;quO9KhjhJEHtODDzgxjnkegb0CFndUSMe9IYbOMTDgOVM4TpDNKL72W&quot; class=&quot;VQ6O&quot; class=&quot;KvvDyL-a-bd-838-CHsbHdX&quot;&gt;
+&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;
+&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;
+&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;
+&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;
+&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;&lt;th&gt;
+&lt;h2&gt;&lt;h2&gt;
+&lt;h2&gt;&lt;h2&gt;
+&lt;h2&gt;&lt;h2&gt;
+&lt;h2&gt;&lt;h2&gt;
+&lt;h2&gt;&lt;h2&gt;
+&lt;datalist&gt;
+&lt;datalist&gt;
+&lt;datalist&gt;
+&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;
+&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;
+&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;&lt;title&gt;
+&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;
+&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;
+&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;
+&lt;datalist&gt;
+&lt;datalist&gt;
+&lt;datalist&gt;
+&lt;datalist&gt;
+&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;
+&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;
+&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;
+&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;&lt;t=d&gt;
+&lt;h3&gt;
+&lt;h3&gt;
+&lt;h3&gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;td&gt;&lt;td&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;&lt;h3&gt;
+&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;&lt;html&gt;
+&lt;html&gt;
+&lt;html&gt;
+&lt;html&gt;
+&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;
+&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;
+&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;&lt;basefont&gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot;&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;meter&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;legend&gt;
+&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;
+&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;
+&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;&lt;rt&gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;textarea src=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot; style=&quot;display:none !important;&quot; alt=&quot;&quot; &gt;
+&lt;samp&gt;
+&lt;samp&gt;
+&lt;samp&gt;
+&lt;samp&gt;
+&lt;samp&gt;
+&lt;samp&gt;
+&lt;samp&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+&lt;mark&gt;
+
+
+&lt;style class=&quot;ihz5z&quot;&gt;&lt;style class=&quot;mAYRJ6vJ0e&quot;&gt;&lt;style class=&quot;4TDfQzvDkYnYnQj&quot;&gt;
+&lt;style class=&quot;UgEVf&quot;&gt;&lt;style class=&quot;UrTKM17cqf&quot;&gt;&lt;style class=&quot;SP15MmUxNRjDUGL&quot;&gt;
+&lt;style class=&quot;5MrYZ&quot;&gt;&lt;style class=&quot;gdP9HBQiLp&quot;&gt;&lt;style class=&quot;C9m1evrJ50ZQIGZ&quot;&gt;
+&lt;style class=&quot;1tz3B&quot;&gt;&lt;style class=&quot;PZz9g81XKN&quot;&gt;&lt;style class=&quot;Q2jYEHgsH5p5vd4&quot;&gt;
+&lt;style class=&quot;S65DO&quot;&gt;&lt;style class=&quot;1Uptm0bxKO&quot;&gt;&lt;style class=&quot;W9mPQofQWTIHRl5&quot;&gt;
+&lt;style class=&quot;Tpmj0&quot;&gt;&lt;style class=&quot;VfoCo7mZMF&quot;&gt;&lt;style class=&quot;rhgbIJvHFdAaBtD&quot;&gt;
+&lt;style class=&quot;jKSXZ&quot;&gt;&lt;style class=&quot;CYq4CUWvwZ&quot;&gt;&lt;style class=&quot;OAuykucotnBxmlw&quot;&gt;
+&lt;style class=&quot;Zw90r&quot;&gt;&lt;style class=&quot;gAs6DCIEau&quot;&gt;&lt;style class=&quot;7o5eGDklMkWIAV1&quot;&gt;
+&lt;style class=&quot;iBQRk&quot;&gt;&lt;style class=&quot;d5KkSYz8jV&quot;&gt;&lt;style class=&quot;k2nrdQm0VxcPneD&quot;&gt;
+&lt;style class=&quot;G20EV&quot;&gt;&lt;style class=&quot;FABxrYquSG&quot;&gt;&lt;style class=&quot;QgQ9NsL02VzxQR1&quot;&gt;
+&lt;style class=&quot;mzSYy&quot;&gt;&lt;style class=&quot;8dGlBCCBTW&quot;&gt;&lt;style class=&quot;Ze0Afrdo1aM1zeZ&quot;&gt;
+&lt;style class=&quot;pXnmS&quot;&gt;&lt;style class=&quot;DAP7E6wyF0&quot;&gt;&lt;style class=&quot;EkLz2fqgCZuot1Y&quot;&gt;
+&lt;style class=&quot;EZvAI&quot;&gt;&lt;style class=&quot;nscQlYw4tB&quot;&gt;&lt;style class=&quot;5hRLYMqoQItgwbN&quot;&gt;
+&lt;style class=&quot;xtSCk&quot;&gt;&lt;style class=&quot;vLzvNk2rLT&quot;&gt;&lt;style class=&quot;XM5bCUp5grl177A&quot;&gt;
+&lt;style class=&quot;xcsmb&quot;&gt;&lt;style class=&quot;l4r1ASUksY&quot;&gt;&lt;style class=&quot;1r5xIJZUxdFN23I&quot;&gt;
+&lt;style class=&quot;uyzJx&quot;&gt;&lt;style class=&quot;LHGdQjJWpR&quot;&gt;&lt;style class=&quot;jt244PWp8LkR1PT&quot;&gt;
+&lt;style class=&quot;Hwptu&quot;&gt;&lt;style class=&quot;6YF0193bpW&quot;&gt;&lt;style class=&quot;YxsTdPzGQStp1hN&quot;&gt;
+&lt;style class=&quot;ITVFX&quot;&gt;&lt;style class=&quot;GDNwemqtYy&quot;&gt;&lt;style class=&quot;fIMDFzO2rdUuiY7&quot;&gt;
+&lt;style class=&quot;C8Kei&quot;&gt;&lt;style class=&quot;nLCj46lojc&quot;&gt;&lt;style class=&quot;VeTy2Sj1JHAtSti&quot;&gt;
+&lt;style class=&quot;z6F3o&quot;&gt;&lt;style class=&quot;YLHhRhFZWs&quot;&gt;&lt;style class=&quot;yX9NDBpRYDlzOku&quot;&gt;
+&lt;style class=&quot;KeXzL&quot;&gt;&lt;style class=&quot;BCj1zAJ6PM&quot;&gt;&lt;style class=&quot;EgDIThSvtnlx8ce&quot;&gt;
+&lt;style class=&quot;Zhi4A&quot;&gt;&lt;style class=&quot;wGarvczqCX&quot;&gt;&lt;style class=&quot;JXrp12PAZBQm4jy&quot;&gt;
+&lt;style class=&quot;yrv9p&quot;&gt;&lt;style class=&quot;Eib4QDPhSu&quot;&gt;&lt;style class=&quot;aUXnbmDjrsvytiO&quot;&gt;
+&lt;style class=&quot;aT0C7&quot;&gt;&lt;style class=&quot;obgIowHdfU&quot;&gt;&lt;style class=&quot;H2g4nxsLSgOjR40&quot;&gt;
+
+&lt;/div&gt;
+
+
+
+
+
+
+
+&lt;/html&gt;
