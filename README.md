@@ -185,7 +185,7 @@ One of the six planned investigations is complete. Selecting the case identifier
 | Case | Investigation | Status |
 | --- | --- | --- |
 | [`INC-001`](incidents/INC-001-brute-force/README.md) | RDP Password Guessing and Credential Compromise | Complete |
-| `INC-002` | Phishing Email Investigation | Planned |
+| [`INC-002`](incidents/INC-002-phishing/README.md) | Phishing Email Investigation | Complete |
 | `INC-003` | Suspicious PowerShell and Persistence | Planned |
 | `INC-004` | Suspicious Sign-in in Microsoft Sentinel | Planned |
 | `INC-005` | Endpoint Compromise | Planned |
