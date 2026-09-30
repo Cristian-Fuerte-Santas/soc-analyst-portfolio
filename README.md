@@ -18,15 +18,18 @@ This repository documents hands-on security operations work performed in a contr
 
 ## Current Status
 
-**Core endpoint and network telemetry operational — three portfolio investigations are complete.**
+**Core endpoint, network, and Microsoft Sentinel telemetry operational — four portfolio investigations are complete.**
 
 The Active Directory environment, endpoint audit policies, PowerShell logging, Sysmon deployment, and centralized Windows ingestion in Splunk are operational. The lab also includes an isolated attacker network protected by pfSense, centralized firewall logging in Splunk, search-time pfSense field extractions, and a validated scheduled detection for TCP port scanning.
+
+Microsoft Sentinel is also operational for custom authentication-log ingestion through the Azure Monitor Logs Ingestion API, KQL detection, scheduled analytics, entity mapping, and Microsoft Defender case generation and investigation.
 
 Three investigations have now been completed:
 
 - `INC-001` — RDP password guessing, account lockout, credential compromise, and post-authentication activity.
 - `INC-002` — Phishing email analysis covering headers, authentication, hidden HTML, redirect infrastructure, user exposure, and response.
 - `INC-003` — Suspicious PowerShell activity covering post-compromise discovery, service Registry reconnaissance, encoded PowerShell, Script Block Logging, scheduled-task persistence, and process correlation.
+- `INC-004` — Suspicious cross-workstation authentication in Microsoft Sentinel covering custom log ingestion, KQL detection, scheduled analytics, authentication baselining, case investigation, and closure.
 
 | Component | Status |
 | --- | --- |
@@ -40,7 +43,9 @@ Three investigations have now been completed:
 | `INC-001` investigation | Complete |
 | `INC-002` investigation | Complete |
 | `INC-003` investigation | Complete |
-| `INC-004` to `INC-006` | Planned |
+| `INC-004` investigation | Complete |
+| `INC-005` investigation | Planned  |
+| `INC-006` investigation | Planned  |
 
 ## Lab Architecture
 
@@ -179,6 +184,7 @@ The scheduled Splunk alert detected the controlled scan and created a medium-sev
 | Detection | Data source | Logic | Severity | Status |
 | --- | --- | --- | --- | --- |
 | `PF-001` — Possible Port Scan from ATTACKER Network | `pfsense:filterlog` | At least 10 distinct blocked TCP destination ports from one source within five minutes | Medium | Validated |
+| `INC-004` — Suspicious Cross-Workstation Authentication | `HomelabAuth_CL` | Successful domain authentication from a source IP different from the configured account/workstation baseline, enriched with preceding Kerberos failures | Medium | Validated |
 
 This validation confirmed the complete telemetry path:
 
@@ -187,16 +193,22 @@ KALI01 → FW01 → Syslog UDP 5514 → Splunk → Field extraction → Schedule
 ```
 The test produced 40 blocked connection events across 20 distinct destination ports. The duplicated attempts were expected because Nmap was configured with one retry per port.
 
+`INC-004` separately validated an end-to-end Microsoft Sentinel workflow:
+
+```text
+Windows Security → Splunk collection → CSV normalisation → Logs Ingestion API → HomelabAuth_CL → KQL analytics rule → Sentinel alert → Microsoft Defender Case
+```
+
 ## Investigation Portfolio
 
-Three of the six planned investigations are complete. Selecting the case identifier opens the full incident report.
+Four of the six planned investigations are complete. Selecting the case identifier opens the full incident report.
 
 | Case | Investigation | Status |
 | --- | --- | --- |
 | [`INC-001`](incidents/INC-001-brute-force/README.md) | RDP Password Guessing and Credential Compromise | Complete |
 | [`INC-002`](incidents/INC-002-phishing/README.md) | Phishing Email Investigation | Complete |
 | [`INC-003`](incidents/INC-003-powershell/README.md) | Suspicious PowerShell and Persistence | Complete |
-| `INC-004` | Suspicious Sign-in in Microsoft Sentinel | Planned |
+| [`INC-004`](incidents/INC-004-suspicious-signin/README.md) | Suspicious Cross-Workstation Authentication in Microsoft Sentinel | Complete |
 | `INC-005` | Endpoint Compromise | Planned |
 | `INC-006` | Network and C2 Investigation | Planned |
 
@@ -269,6 +281,10 @@ Each incident directory contains, or will contain as it is completed, its own re
 ### Implemented
 
 - Splunk Enterprise
+- Microsoft Sentinel
+- Kusto Query Language (KQL)
+- Azure Monitor Logs Ingestion API
+- Microsoft Defender Cases
 - pfSense Community Edition
 - Kali Linux and Nmap
 - Windows Event Logs
@@ -280,7 +296,6 @@ Each incident directory contains, or will contain as it is completed, its own re
 
 ### Planned for Investigations
 
-- Microsoft Sentinel
 - Wireshark
 
 ## Security and Privacy
