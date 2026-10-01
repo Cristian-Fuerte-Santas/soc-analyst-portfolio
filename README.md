@@ -208,7 +208,7 @@ Four of the six planned investigations are complete. Selecting the case identifi
 | [`INC-001`](incidents/INC-001-brute-force/README.md) | RDP Password Guessing and Credential Compromise | Complete |
 | [`INC-002`](incidents/INC-002-phishing/README.md) | Phishing Email Investigation | Complete |
 | [`INC-003`](incidents/INC-003-powershell/README.md) | Suspicious PowerShell and Persistence | Complete |
-| [`INC-004`](incidents/INC-004-suspicious-signin/README.md) | Suspicious Cross-Workstation Authentication in Microsoft Sentinel | Complete |
+| [`INC-004`](incidents/INC-004-suspicious-signin/README.md) | Suspicious Signin | Complete |
 | `INC-005` | Endpoint Compromise | Planned |
 | `INC-006` | Network and C2 Investigation | Planned |
 
