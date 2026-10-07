@@ -1,6 +1,6 @@
 # SOC Analyst Portfolio
 
-This repository documents hands-on security operations work performed in a controlled home lab. The project focuses on alert triage, evidence-based investigation, event correlation, incident scoping, severity assessment, response recommendations, and escalation decisions.
+This repository documents hands-on security operations work performed in a controlled homelab. The portfolio covers alert triage, evidence-based investigation, detection engineering, event correlation, incident scoping, severity assessment, escalation, forensic analysis, containment, eradication, recovery, and post-incident validation across endpoint, identity, network, and cloud telemetry.
 
 ## Contents
 
@@ -18,21 +18,13 @@ This repository documents hands-on security operations work performed in a contr
 
 ## Current Status
 
-**Core endpoint, network, and Microsoft Sentinel telemetry operational — five portfolio investigations are complete.**
+**Portfolio v1.0 complete — all six planned investigations are finished.**
 
-The Active Directory environment, endpoint audit policies, PowerShell logging, Sysmon deployment, and centralized Windows ingestion in Splunk are operational. The lab also includes an isolated attacker network protected by pfSense, centralized firewall logging in Splunk, search-time pfSense field extractions, and a validated scheduled detection for TCP port scanning.
+The core lab is fully operational: Active Directory, Advanced Audit Policy, PowerShell logging, Sysmon, centralized Windows ingestion in Splunk, pfSense segmentation, centralized firewall telemetry, and scheduled network detection have all been validated.
 
-Microsoft Sentinel is also operational for custom authentication-log ingestion through the Azure Monitor Logs Ingestion API, KQL detection, scheduled analytics, entity mapping, and Microsoft Defender case generation and investigation.
+Microsoft Sentinel is also operational for custom authentication-log ingestion through the Azure Monitor Logs Ingestion API, KQL analytics, scheduled detection, entity mapping, and Microsoft Defender case investigation.
 
-Controlled adversary emulation is also operational through the isolated ATTACKER network. `INC-005` validated a full compromise scenario against `DC01`, including Havoc C2 activity, endpoint and firewall correlation, persistence, privileged identity manipulation, credential-access activity, controlled exfiltration, and a Tier 1 escalation handoff.
-
-Five investigations have now been completed:
-
-- `INC-001` — RDP password guessing, account lockout, credential compromise, and post-authentication activity.
-- `INC-002` — Phishing email analysis covering headers, authentication, hidden HTML, redirect infrastructure, user exposure, and response.
-- `INC-003` — Suspicious PowerShell activity covering post-compromise discovery, service Registry reconnaissance, encoded PowerShell, Script Block Logging, scheduled-task persistence, and process correlation.
-- `INC-004` — Suspicious cross-workstation authentication in Microsoft Sentinel covering custom log ingestion, KQL detection, scheduled analytics, authentication baselining, case investigation, and closure.
-- `INC-005` — Domain Controller compromise covering Havoc C2 execution, process and network correlation, Registry persistence, privileged backdoor account creation, SAM hive collection, controlled exfiltration, and Tier 2 / CSIRT escalation.
+The portfolio progresses from Tier 1 investigation and detection engineering into a linked Domain Controller compromise and response scenario. `INC-005` establishes the compromise and Tier 1 escalation; `INC-006` continues the same case at Tier 2 / CSIRT level with network containment, evidence preservation, memory and file analysis, broader IOC scoping, eradication, recovery, and post-recovery validation.
 
 | Component | Status |
 | --- | --- |
@@ -43,12 +35,9 @@ Five investigations have now been completed:
 | pfSense network segmentation | Complete |
 | pfSense ingestion and field extraction in Splunk | Complete |
 | `PF-001` port-scan detection | Validated |
-| `INC-001` investigation | Complete |
-| `INC-002` investigation | Complete |
-| `INC-003` investigation | Complete |
-| `INC-004` investigation | Complete |
-| `INC-005` investigation | Complete |
-| `INC-006` investigation | Planned  |
+| Microsoft Sentinel ingestion and analytics workflow | Validated |
+| Investigation portfolio | **6 / 6 complete** |
+| Tier 2 / CSIRT response and forensic workflow | Complete |
 
 ## Lab Architecture
 
@@ -187,7 +176,7 @@ The scheduled Splunk alert detected the controlled scan and created a medium-sev
 | Detection | Data source | Logic | Severity | Status |
 | --- | --- | --- | --- | --- |
 | `PF-001` — Possible Port Scan from ATTACKER Network | `pfsense:filterlog` | At least 10 distinct blocked TCP destination ports from one source within five minutes | Medium | Validated |
-| `INC-004` — Suspicious Cross-Workstation Authentication | `HomelabAuth_CL` | Successful domain authentication from a source IP different from the configured account/workstation baseline, enriched with preceding Kerberos failures | Medium | Validated |
+| Suspicious Cross-Workstation Authentication | `HomelabAuth_CL` | Successful domain authentication from a source IP different from the configured account/workstation baseline, enriched with preceding Kerberos failures | Medium | Validated |
 
 This validation confirmed the complete telemetry path:
 
@@ -204,106 +193,106 @@ Windows Security → Splunk collection → CSV normalisation → Logs Ingestion 
 
 ## Investigation Portfolio
 
-Five of the six planned investigations are complete. Selecting the case identifier opens the full incident report.
+All six planned investigations are complete. Selecting a case identifier opens the full incident report.
 
 | Case | Investigation | Status |
 | --- | --- | --- |
 | [`INC-001`](incidents/INC-001-brute-force/README.md) | RDP Password Guessing and Credential Compromise | Complete |
-| [`INC-002`](incidents/INC-002-phishing/README.md) | Phishing Email Investigation | Complete |
-| [`INC-003`](incidents/INC-003-powershell/README.md) | Suspicious PowerShell and Persistence | Complete |
-| [`INC-004`](incidents/INC-004-suspicious-signin/README.md) | Suspicious Signin | Complete |
+| [`INC-002`](incidents/INC-002-phishing/README.md) | Phishing Email Investigation and Redirect Analysis | Complete |
+| [`INC-003`](incidents/INC-003-powershell/README.md) | Suspicious PowerShell and Scheduled Task Persistence | Complete |
+| [`INC-004`](incidents/INC-004-suspicious-signin/README.md) | Suspicious Cross-Workstation Authentication in Microsoft Sentinel | Complete |
 | [`INC-005`](incidents/INC-005-endpoint-compromise/README.md) | Domain Controller Compromise: C2, Persistence and Privileged Access | Complete |
-| `INC-006` | Network and C2 Investigation | Planned |
+| [`INC-006`](incidents/INC-006-dc-incident-response/README.md) | Domain Controller Incident Response: Containment, Forensics, Scope and Recovery | Complete |
 
-Each investigation report includes the evidence and reasoning required to support:
+`INC-005` and `INC-006` form a linked two-stage investigation. `INC-005` documents Tier 1 detection, confirmation and escalation of the Domain Controller compromise; `INC-006` documents the Tier 2 / CSIRT response through containment, forensic preservation and analysis, scope investigation, eradication, recovery, and final validation.
 
-- A reconstructed timeline
-- A defined scope
-- An evidence-based verdict and severity
-- Recommended response actions
-- An escalation or closure decision
-- Detection opportunities and possible false positives
+Across the portfolio, reports document the evidence and reasoning needed to support, where applicable:
+
+- reconstructed timelines;
+- defined scope and affected entities;
+- evidence-based verdicts and severity;
+- containment, response, escalation, or closure decisions;
+- detection opportunities and false-positive considerations;
+- forensic limitations and confidence boundaries;
+- eradication and recovery validation.
 
 ## Investigation Methodology
 
-Each case follows a consistent SOC workflow:
+The portfolio follows a consistent evidence-driven SOC workflow, adapted to the needs of each case:
 
-1. Review the alert or initial trigger
-2. Identify the questions the investigation must answer
-3. Examine the relevant logs and evidence
-4. Reconstruct the event timeline
-5. Determine the affected scope and entities
-6. Assign a justified verdict and severity
-7. Recommend containment, response, or escalation
-8. Document detection improvements and lessons learned
+1. Review the alert, trigger, or investigative handoff.
+2. Define the questions the investigation must answer.
+3. Establish an appropriate baseline where benign context is required.
+4. Examine relevant endpoint, identity, network, email, or cloud evidence.
+5. Correlate events across sources and reconstruct the timeline.
+6. Determine affected scope, entities, and incident-specific indicators.
+7. Assign a justified verdict and severity.
+8. Recommend or perform containment, escalation, and evidence preservation where required.
+9. Perform eradication and recovery validation when the case progresses into incident response.
+10. Document limitations, detection improvements, and lessons learned.
 
-Queries, commands, screenshots, results, and interpretations are documented together so that every conclusion can be traced back to supporting evidence.
+Queries, commands, screenshots, results, and interpretations are documented together so that conclusions can be traced back to supporting evidence.
+
+The Tier 2 / CSIRT workflow demonstrated in `INC-006` extends this methodology with volatile-memory acquisition, targeted file preservation, Autopsy and Volatility analysis, IOC sweeping across multiple systems, eradication, reboot validation, and post-recovery network verification.
 
 ## Repository Structure
+
 ```text
 soc-analyst-portfolio/
 ├── README.md
 ├── images/
-│   ├── 01-active-directory-users.png
-│   ├── 02-active-directory-workstations.png
-│   ├── 03-process-creation-4688.png
-│   ├── 04-powershell-module-4103.png
-│   ├── 05-powershell-script-block-4104.png
-│   ├── 06-sysmon-process-1.png
-│   ├── 07-splunk-client01-ingestion.png
-│   ├── 08-splunk-three-host-ingestion.png
-│   ├── 09-pfsense-interfaces.png
-│   ├── 10-kali-nmap-validation.png
-│   ├── 11-splunk-pfsense-fields.png
-│   ├── 12-pf001-triggered-alert.png
-│   └── lab-architecture.png
+│   ├── 01-active-directory-users.png
+│   ├── 02-active-directory-workstations.png
+│   ├── 03-process-creation-4688.png
+│   ├── 04-powershell-module-4103.png
+│   ├── 05-powershell-script-block-4104.png
+│   ├── 06-sysmon-process-1.png
+│   ├── 07-splunk-client01-ingestion.png
+│   ├── 08-splunk-three-host-ingestion.png
+│   ├── 09-pfsense-interfaces.png
+│   ├── 10-kali-nmap-validation.png
+│   ├── 11-splunk-pfsense-fields.png
+│   ├── 12-pf001-triggered-alert.png
+│   └── lab-architecture.png
 └── incidents/
-    ├── INC-001-brute-force/
-    │   ├── README.md
-    │   └── images/
-    ├── INC-002-phishing/
-    |   ├── README.md
-    │   └── images/
-    ├── INC-003-powershell/
-    |   ├── README.md
-    │   └── images/
-    ├── INC-004-suspicious-signin/
-    |   ├── README.md
-    │   └── images/
-    ├── INC-005-endpoint-compromise/
-    |   ├── README.md
-    │   └── images/
-    └── INC-006-network-c2/
-    |   ├── README.md
-    │   └── images/
+    ├── INC-001-brute-force/
+    │   ├── README.md
+    │   └── images/
+    ├── INC-002-phishing/
+    │   ├── README.md
+    │   └── images/
+    ├── INC-003-powershell/
+    │   ├── README.md
+    │   └── images/
+    ├── INC-004-suspicious-signin/
+    │   ├── README.md
+    │   └── images/
+    ├── INC-005-endpoint-compromise/
+    │   ├── README.md
+    │   └── images/
+    └── INC-006-dc-incident-response/
+        ├── README.md
+        └── images/
 ```
-Each incident directory contains, or will contain as it is completed, its own report and supporting images.
+
+Each incident directory contains its final report and supporting evidence images.
 
 ## Tools and Technologies
 
-### Implemented
-
-- Splunk Enterprise
-- Microsoft Sentinel
-- Kusto Query Language (KQL)
-- Azure Monitor Logs Ingestion API
-- Microsoft Defender Cases
-- Microsoft Defender Antivirus
-- pfSense Community Edition
-- Kali Linux and Nmap
-- Havoc C2 Framework
-- VirusTotal
-- Windows Event Logs
-- Sysmon
-- PowerShell logging
-- Active Directory
-- VMware Workstation
-- Docker
-
-### Planned for Investigations
-
-- Wireshark
+| Area | Tools and technologies |
+| --- | --- |
+| SIEM and cloud security | Splunk Enterprise, Microsoft Sentinel, Kusto Query Language (KQL), Azure Monitor Logs Ingestion API, Microsoft Defender Cases |
+| Endpoint and identity telemetry | Windows Event Logs, Sysmon, PowerShell logging, Advanced Audit Policy, Active Directory Domain Services, Microsoft Defender Antivirus |
+| Network security | pfSense Community Edition, centralized syslog, Kali Linux, Nmap |
+| Detection and adversary emulation | Atomic Red Team, Havoc C2 Framework |
+| Forensics and incident response | WinPmem, FTK Imager, Autopsy, Volatility 3 / Volatility Workbench |
+| Email and external analysis | PhishTool, DomainTools, urlscan.io, VirusTotal |
+| Lab infrastructure | VMware Workstation, Docker, Windows 10, Windows Server 2019, Windows 11 |
 
 ## Security and Privacy
 
-All activity is generated inside a controlled laboratory environment. User identities are fictional, private IP addressing is used, and credentials, tokens, configuration backups, password hashes, and sensitive host information are excluded from the public repository.
+All activity is generated or analysed within controlled, authorised environments. The homelab uses fictional identities and private IP addressing, and no real user credentials or sensitive organisational data are used in the simulated incidents.
+
+The public repository excludes live malware binaries, memory dumps, Registry hives, credentials, access tokens, configuration backups, password hashes, and other sensitive host artefacts. Synthetic test values may appear in screenshots where they are necessary to demonstrate the investigation.
+
+Offensive tooling is included only to provide controlled ground truth for defensive analysis. The portfolio does not provide operational instructions for targeting third-party systems.
