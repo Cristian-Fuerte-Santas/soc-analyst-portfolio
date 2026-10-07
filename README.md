@@ -241,38 +241,33 @@ The Tier 2 / CSIRT workflow demonstrated in `INC-006` extends this methodology w
 soc-analyst-portfolio/
 ├── README.md
 ├── images/
-│   ├── 01-active-directory-users.png
-│   ├── 02-active-directory-workstations.png
-│   ├── 03-process-creation-4688.png
-│   ├── 04-powershell-module-4103.png
-│   ├── 05-powershell-script-block-4104.png
-│   ├── 06-sysmon-process-1.png
-│   ├── 07-splunk-client01-ingestion.png
-│   ├── 08-splunk-three-host-ingestion.png
-│   ├── 09-pfsense-interfaces.png
-│   ├── 10-kali-nmap-validation.png
-│   ├── 11-splunk-pfsense-fields.png
-│   ├── 12-pf001-triggered-alert.png
-│   └── lab-architecture.png
 └── incidents/
     ├── INC-001-brute-force/
     │   ├── README.md
     │   └── images/
+    │
     ├── INC-002-phishing/
     │   ├── README.md
-    │   └── images/
+    │   ├── images/
+    │   └── cristian-clarinete Unread video from Elena (expires in 5 mins).eml
+    │
     ├── INC-003-powershell/
     │   ├── README.md
     │   └── images/
+    │
     ├── INC-004-suspicious-signin/
     │   ├── README.md
     │   └── images/
+    │
     ├── INC-005-endpoint-compromise/
     │   ├── README.md
     │   └── images/
+    │
     └── INC-006-dc-incident-response/
         ├── README.md
-        └── images/
+        ├── images/
+        ├── VolatilityWorkbenchLogNETSCAN.txt
+        └── VolatilityWorkbenchLogPSTREE.txt
 ```
 
 Each incident directory contains its final report and supporting evidence images.
