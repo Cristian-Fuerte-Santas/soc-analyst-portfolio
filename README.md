@@ -18,18 +18,21 @@ This repository documents hands-on security operations work performed in a contr
 
 ## Current Status
 
-**Core endpoint, network, and Microsoft Sentinel telemetry operational — four portfolio investigations are complete.**
+**Core endpoint, network, and Microsoft Sentinel telemetry operational — five portfolio investigations are complete.**
 
 The Active Directory environment, endpoint audit policies, PowerShell logging, Sysmon deployment, and centralized Windows ingestion in Splunk are operational. The lab also includes an isolated attacker network protected by pfSense, centralized firewall logging in Splunk, search-time pfSense field extractions, and a validated scheduled detection for TCP port scanning.
 
 Microsoft Sentinel is also operational for custom authentication-log ingestion through the Azure Monitor Logs Ingestion API, KQL detection, scheduled analytics, entity mapping, and Microsoft Defender case generation and investigation.
 
-Three investigations have now been completed:
+Controlled adversary emulation is also operational through the isolated ATTACKER network. `INC-005` validated a full compromise scenario against `DC01`, including Havoc C2 activity, endpoint and firewall correlation, persistence, privileged identity manipulation, credential-access activity, controlled exfiltration, and a Tier 1 escalation handoff.
+
+Five investigations have now been completed:
 
 - `INC-001` — RDP password guessing, account lockout, credential compromise, and post-authentication activity.
 - `INC-002` — Phishing email analysis covering headers, authentication, hidden HTML, redirect infrastructure, user exposure, and response.
 - `INC-003` — Suspicious PowerShell activity covering post-compromise discovery, service Registry reconnaissance, encoded PowerShell, Script Block Logging, scheduled-task persistence, and process correlation.
 - `INC-004` — Suspicious cross-workstation authentication in Microsoft Sentinel covering custom log ingestion, KQL detection, scheduled analytics, authentication baselining, case investigation, and closure.
+- `INC-005` — Domain Controller compromise covering Havoc C2 execution, process and network correlation, Registry persistence, privileged backdoor account creation, SAM hive collection, controlled exfiltration, and Tier 2 / CSIRT escalation.
 
 | Component | Status |
 | --- | --- |
@@ -44,7 +47,7 @@ Three investigations have now been completed:
 | `INC-002` investigation | Complete |
 | `INC-003` investigation | Complete |
 | `INC-004` investigation | Complete |
-| `INC-005` investigation | Planned  |
+| `INC-005` investigation | Complete |
 | `INC-006` investigation | Planned  |
 
 ## Lab Architecture
@@ -201,7 +204,7 @@ Windows Security → Splunk collection → CSV normalisation → Logs Ingestion 
 
 ## Investigation Portfolio
 
-Four of the six planned investigations are complete. Selecting the case identifier opens the full incident report.
+Five of the six planned investigations are complete. Selecting the case identifier opens the full incident report.
 
 | Case | Investigation | Status |
 | --- | --- | --- |
@@ -209,7 +212,7 @@ Four of the six planned investigations are complete. Selecting the case identifi
 | [`INC-002`](incidents/INC-002-phishing/README.md) | Phishing Email Investigation | Complete |
 | [`INC-003`](incidents/INC-003-powershell/README.md) | Suspicious PowerShell and Persistence | Complete |
 | [`INC-004`](incidents/INC-004-suspicious-signin/README.md) | Suspicious Signin | Complete |
-| `INC-005` | Endpoint Compromise | Planned |
+| [`INC-005`](incidents/INC-005-endpoint-compromise/README.md) | Domain Controller Compromise: C2, Persistence and Privileged Access | Complete |
 | `INC-006` | Network and C2 Investigation | Planned |
 
 Each investigation report includes the evidence and reasoning required to support:
@@ -285,8 +288,11 @@ Each incident directory contains, or will contain as it is completed, its own re
 - Kusto Query Language (KQL)
 - Azure Monitor Logs Ingestion API
 - Microsoft Defender Cases
+- Microsoft Defender Antivirus
 - pfSense Community Edition
 - Kali Linux and Nmap
+- Havoc C2 Framework
+- VirusTotal
 - Windows Event Logs
 - Sysmon
 - PowerShell logging
